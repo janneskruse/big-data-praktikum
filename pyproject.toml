@@ -15,6 +15,7 @@ scipy = "^1.13.1"
 cython = "^3.0.10"
 pyfftw = "^0.13.1"
 matplotlib = "^3.9.0"
+dask = "^2024.6.2"
 
 
 [tool.poetry.group.dev.dependencies]
