@@ -17,6 +17,10 @@ pyfftw = "^0.13.1"
 matplotlib = "^3.9.0"
 dask = "^2024.6.2"
 itables = "^2.1.2"
+jupyter-contrib-nbextensions = "^0.7.0"
+jupyter = {version = "^1.0.0", extras = ["complete"]}
+notebook = "^7.2.1"
+nbconvert = "^7.16.4"
 
 
 [tool.poetry.group.dev.dependencies]
