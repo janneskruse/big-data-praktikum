@@ -256,7 +256,7 @@ def create_spectro_segment(file_index, args, filelist):
     
     # Check if the data shape is correct
     if not validate_data_shape(data, (n_samples, expected_channels)):
-        print(f"Data shape of {filename} is not correct.": data.shape)
+        print(f"Data shape of {filename} is not correct.: {data.shape} != {(n_samples, expected_channels)}")
         data = pad_or_truncate_data(data, n_samples)
         
     # the windowing function (Tukey window in this case) tapers at the ends, 
@@ -531,8 +531,8 @@ if __name__=='__main__':
         
     print(f"metadata created in {time.time()-start}s:")
 
-    print(f"Creating and writing empty {zarr_path} with metadata...")
     #xarray dataset to zarr
+    print(f"Creating and writing empty {zarr_path} with metadata...")
     start=time.time()
     #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
     print(f"zarr created in {time.time()-start}s")
@@ -596,7 +596,7 @@ if __name__=='__main__':
             xr_zarr["data"][running_index:running_index+nseg] = dask_array
             running_index += nseg
             
-        xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
+        #xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
         
     
