@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "rhone"
 version = "0.1.0"
-description = "Creates a new enviornment for all the scripts inside big_data_praktikum"
-authors = ["Your Name <you@example.com>"]
+description = "Creates a new enviornment for all the scripts inside big-data-praktikum"
+authors = ["Jannes Kruse <jannes.kruse@rwth-aachen.de>, Louis Trinkle <louis.trinkle@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -21,6 +21,7 @@ jupyter-contrib-nbextensions = "^0.7.0"
 jupyter = {version = "^1.0.0", extras = ["complete"]}
 notebook = "^7.2.1"
 nbconvert = "^7.16.4"
+zarr = "^2.18.2"
 
 
 [tool.poetry.group.dev.dependencies]
