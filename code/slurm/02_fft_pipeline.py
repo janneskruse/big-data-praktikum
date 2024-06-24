@@ -260,6 +260,13 @@ def create_spectro_segment(file_index, args, filelist):
     if file_index!=n_files-1:
         xr_h5_2=xr.open_dataset(filelist[file_index+1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
         data_2=xr_h5_2["Acoustic"].compute().values.astype(float_type)
+        
+        # Ensure the arrays have the same size along dimension 1
+        if data.shape[1:] == data_2.shape[1:]:
+            min_size = min(data.shape[1], data_2.shape[1])
+            data = data[:, :min_size]
+            data_2 = data_2[:, :min_size]
+        
         data = np.concatenate((data, data_2[0:seg_len]), axis=0)
     
     next_file_index = file_index+1
@@ -513,7 +520,7 @@ if __name__=='__main__':
     #xarray dataset to zarr
     print(f"Creating and writing empty {zarr_path} with metadata...")
     start=time.time()
-    #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+    xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
     print(f"zarr created in {time.time()-start}s")
      
     # In the following lines, multiple cpu-cores calculate
@@ -575,7 +582,7 @@ if __name__=='__main__':
             xr_zarr["data"][running_index:running_index+nseg] = dask_array
             running_index += nseg
             
-        #xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
+        xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
         
     
