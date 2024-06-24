@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#SBATCH --time=0:30:00
+#SBATCH --time=1:00:00
 #SBATCH --job-name="02_fft_pipeline"
-#SBATCH --nodes=2 #3
+#SBATCH --nodes=3 #3
 #SBATCH --tasks-per-node=10 #10
-#SBATCH --ntasks=20 #30
+#SBATCH --ntasks=30 #30
 #SBATCH --cpus-per-task=12
 #SBATCH --mem-per-cpu=8000
 #SBATCH --partition=paula
