@@ -366,6 +366,7 @@ if __name__=='__main__':
     zarr_path = f"{zarr_base}/{zarr_name}"
     
     os.chdir(base) # change to the base directory
+    print(f"base folder: {os.getcwd()}")
     while os.path.exists(zarr_path) and folders:  # Check if folders is not empty
         folder = folders.pop(0)  # remove and return the first element
         zarr_name = f"cryo_cube{folder}.zarr"
