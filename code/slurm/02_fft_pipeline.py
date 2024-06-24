@@ -520,7 +520,7 @@ if __name__=='__main__':
     #xarray dataset to zarr
     print(f"Creating and writing empty {zarr_path} with metadata...")
     start=time.time()
-    xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+    #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
     print(f"zarr created in {time.time()-start}s")
      
     # In the following lines, multiple cpu-cores calculate
@@ -582,7 +582,7 @@ if __name__=='__main__':
             xr_zarr["data"][running_index:running_index+nseg] = dask_array
             running_index += nseg
             
-        xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
+        #xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
         
     
