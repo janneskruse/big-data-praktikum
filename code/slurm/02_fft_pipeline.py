@@ -349,7 +349,6 @@ args = {
     "seg_len" : seg_sample_len,
     "hop" : hop,
     "n_samples" : n_samples,
-    "n_files" : n_segments_file,
     "seg_length" : seg_length,
     "expected_channels" : expected_channels
 }
@@ -487,6 +486,7 @@ if __name__=='__main__':
     # get the filenames and the total amount of segments
     filenames = get_filenames(folder, base)
     n_files=len(filenames)
+    args["n_files"] = n_files
     print("Number of files:", n_files)
     print("filenames", filenames)
     n_segments_total = int(np.floor((n_files*n_samples-seg_sample_len)/hop))+1 # total amount of segments
@@ -508,11 +508,11 @@ if __name__=='__main__':
     time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ns') 
     
     
-    data_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create an empty dask array
+    fft_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create an empty dask array
 
     xr_zarr = xr.Dataset(
         {
-            "data": (["time", "channel", "frequency"], data_dask),
+            "fft": (["time", "channel", "frequency"], fft_dask),
         },
         coords={
             "time": time_coords,
@@ -527,7 +527,7 @@ if __name__=='__main__':
     #xarray dataset to zarr
     print(f"Creating and writing empty {zarr_path} with metadata...")
     start=time.time()
-    #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+    xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
     print(f"zarr created in {time.time()-start}s")
      
     # In the following lines, multiple cpu-cores calculate
@@ -586,10 +586,10 @@ if __name__=='__main__':
             Fsegs, nseg = fft_results[i-int(liste[0])]
             nseg = int(nseg)
             dask_array = da.from_array(Fsegs, chunks=(nseg, expected_channels, num_frequency_points))
-            xr_zarr["data"][running_index:running_index+nseg] = dask_array
+            xr_zarr["fft"][running_index:running_index+nseg] = dask_array
             running_index += nseg
             
-        #xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
+        xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
         
     
@@ -602,8 +602,8 @@ if __name__=='__main__':
     print(20*"*")
     
     # submit the script again
-    # if len(folders)>0: #
-    #     print(f"Submitting the script again to process the next folder {folders[0]}")
-    #     os.chdir(f"{base}/code/slurm")
-    #     os.system(f"sbatch 02_fft_pipeline.sh")
+    if len(folders)>0: #
+        print(f"Submitting the script again to process the next folder {folders[0]}")
+        os.chdir(f"{base}/code/slurm")
+        os.system(f"sbatch 02_fft_pipeline.sh")
     
