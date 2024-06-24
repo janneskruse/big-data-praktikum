@@ -8,6 +8,7 @@ import multiprocessing as mp
 import re
 from datetime import datetime, timedelta
 from operator import itemgetter
+import fnmatch
 
 #benchmarking
 import time
@@ -156,8 +157,12 @@ def get_filenames(folder, base):
     os.chdir(folder_path)
     files=os.listdir()
     
+    # filter files to only get those where the filename contains 'rhone2das' or 'rhone1khz'
+    # Use fnmatch.filter to find matches for both patterns in a single pass
+    pattern_matches = fnmatch.filter(files, '*rhone2das*') + fnmatch.filter(files, '*rhone1khz*')
+    
     # Sort the files by timestamp
-    sorted_files = sorted(files, key=extract_timestamp)
+    sorted_files = sorted(pattern_matches, key=extract_timestamp)
     
     return  sorted_files 
 
@@ -482,6 +487,8 @@ if __name__=='__main__':
     # get the filenames and the total amount of segments
     filenames = get_filenames(folder, base)
     n_files=len(filenames)
+    print("Number of files:", n_files)
+    print("filenames", filenames)
     n_segments_total = int(np.floor((n_files*n_samples-seg_sample_len)/hop))+1 # total amount of segments
 
     print(f"Creating zarr shape...")
