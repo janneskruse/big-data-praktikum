@@ -18,6 +18,7 @@ import io
 # data handling
 import h5py
 import xarray as xr
+import dask.array as da
 import numpy as np
 import pandas as pd
 import scipy
@@ -313,7 +314,9 @@ args = {
     "end_channel_index" : end_channel_index,
     "seg_len" : seg_sample_len,
     "hop" : hop,
-    "n_samples" : n_samples
+    "n_samples" : n_samples,
+    "n_files" : n_segments_file,
+    "seg_length" : seg_length,
 }
 
 
@@ -462,13 +465,16 @@ if __name__=='__main__':
     dummy_file_path=os.path.join(base, folder, filenames[0])
     dummy_xr = xr.open_dataset(filenames[0], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
     attr = dummy_xr['Acoustic'].attrs
-    start_time = np.datetime64(attr["ISO8601 Timestamp"]) # Convert to numpy datetime64[ns]
+    start_time = np.datetime64(attr["ISO8601 Timestamp"], 'ns') # Get the start time of the first file
     time_res_ms = time_res * 1000  # Convert time_res from seconds to milliseconds
-    time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ms')
+    time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ns') 
     
+    
+    data_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create an empty dask array
+
     xr_zarr = xr.Dataset(
         {
-            "data": (["time", "channel", "frequency"], np.zeros(z_shape, dtype=float_type)),
+            "data": (["time", "channel", "frequency"], data_dask),
         },
         coords={
             "time": time_coords,
@@ -476,6 +482,7 @@ if __name__=='__main__':
             "frequency": freq_coords,
         },
     )
+    print(xr_zarr)
         
     print(f"metadata created in {time.time()-start}s:")
 

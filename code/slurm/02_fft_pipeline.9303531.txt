@@ -1,0 +1,380 @@
+Number of folders before moving files: 34
+Number of folders after moving files: 34
+Processing folder 20200706
+********************
+Max number of CPUs:  128
+Processed day: 06.07.2020
+Time resolution: 0.1 sec
+Frequency resolution: 1 Hz
+Resulting overlap: 0.9
+**********
+Creating zarr shape...
+Creating metadata...
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:468: DeprecationWarning: parsing timezone aware datetimes is deprecated; this will raise an error in the future
+  start_time = np.datetime64(attr["ISO8601 Timestamp"], 'ns') # Get the start time of the first file
+<xarray.Dataset> Size: 685GB
+Dimensions:    (time: 737691, channel: 2300, frequency: 101)
+Coordinates:
+  * time       (time) datetime64[ns] 6MB 2020-07-06T00:00:22.719000 ... 2020-...
+  * channel    (channel) int64 18kB 0 4 8 12 16 20 ... 9180 9184 9188 9192 9196
+  * frequency  (frequency) float64 808B 0.0 1.0 2.0 3.0 ... 97.0 98.0 99.0 100.0
+Data variables:
+    data       (time, channel, frequency) float32 685GB dask.array<chunksize=(60, 2300, 101), meta=np.ndarray>
+metadata created in 0.04449176788330078s:
+Creating and writing empty /work/ju554xqou-rhonezarrs/cryo_cube20200706.zarr with metadata...
+zarr created in 32.60809254646301s
+Memory per file (MB): 113.60244750976562
+Number of cores used: 115
+Starting FFT for split_up liste [   0    1    2 ... 2456 2457 2458]
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_080532.860.h5: 11.092989206314087
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_075032.860.h5: 11.28610610961914
+Time taken for fft of rhone1khz_UTC_20200706_080232.860.h5: 12.043250799179077
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_075332.860.h5: 10.741292715072632
+Time taken for fft of rhone1khz_UTC_20200706_093232.860.h5: 10.465274810791016
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_081132.860.h5: 13.154733419418335
+Time taken for fft of rhone1khz_UTC_20200706_083232.860.h5: 13.644629001617432
+Time taken for fft of rhone1khz_UTC_20200706_073832.860.h5: 12.820532321929932
+Time taken for fft of rhone1khz_UTC_20200706_074732.860.h5: 13.393243074417114
+Time taken for fft of rhone1khz_UTC_20200706_072725.226.h5: 13.490020751953125
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_091432.860.h5: 12.74133038520813
+Time taken for fft of rhone1khz_UTC_20200706_071915.067.h5: 14.6954665184021
+Time taken for fft of rhone1khz_UTC_20200706_073532.860.h5: 13.329885244369507
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_085332.860.h5: 13.061591625213623
+Time taken for fft of rhone1khz_UTC_20200706_081732.860.h5: 12.887704849243164
+Time taken for fft of rhone1khz_UTC_20200706_090232.860.h5: 14.073563814163208
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_074432.860.h5: 17.6775643825531
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_093832.860.h5: 13.041576862335205
+Time taken for fft of rhone1khz_UTC_20200706_091132.860.h5: 13.77977728843689
+Time taken for fft of rhone1khz_UTC_20200706_095932.860.h5: 14.744632005691528
+Time taken for fft of rhone1khz_UTC_20200706_094132.860.h5: 15.530817031860352
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_085632.860.h5: 12.878892421722412
+Time taken for fft of rhone1khz_UTC_20200706_084432.860.h5: 14.738269567489624
+Time taken for fft of rhone1khz_UTC_20200706_100832.860.h5: 13.53525996208191
+Time taken for fft of rhone1khz_UTC_20200706_110232.860.h5: 11.353538751602173
+Time taken for fft of rhone1khz_UTC_20200706_094732.860.h5: 15.995842218399048
+Time taken for fft of rhone1khz_UTC_20200706_093532.860.h5: 14.170761823654175
+Time taken for fft of rhone1khz_UTC_20200706_092332.860.h5: 15.29392147064209
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_092932.860.h5: 16.094882011413574
+Time taken for fft of rhone1khz_UTC_20200706_111132.860.h5: 13.66914987564087
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_101132.860.h5: 16.50746989250183
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_114132.860.h5: 14.890020608901978
+Time taken for fft of rhone1khz_UTC_20200706_090532.860.h5: 15.198784112930298
+Time taken for fft of rhone1khz_UTC_20200706_104132.860.h5: 13.689173698425293
+Time taken for fft of rhone1khz_UTC_20200706_072215.067.h5: 12.866512537002563
+Time taken for fft of rhone1khz_UTC_20200706_080832.860.h5: 13.91847538948059
+Time taken for fft of rhone1khz_UTC_20200706_075932.860.h5: 14.59765625
+Time taken for fft of rhone1khz_UTC_20200706_074132.860.h5: 14.675642490386963
+Time taken for fft of rhone1khz_UTC_20200706_105332.860.h5: 16.227076768875122
+Time taken for fft of rhone1khz_UTC_20200706_073025.226.h5: 16.27703857421875
+Time taken for fft of rhone1khz_UTC_20200706_082032.860.h5: 20.74537682533264
+Time taken for fft of rhone1khz_UTC_20200706_113532.860.h5: 13.191230535507202
+Time taken for fft of rhone1khz_UTC_20200706_112932.860.h5: 16.593204975128174
+Time taken for fft of rhone1khz_UTC_20200706_110532.860.h5: 16.163129568099976
+Time taken for fft of rhone1khz_UTC_20200706_082332.860.h5: 17.6290442943573
+Time taken for fft of rhone1khz_UTC_20200706_103232.860.h5: 15.124292135238647
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_151833.505.h5: 12.43720269203186
+Time taken for fft of rhone1khz_UTC_20200706_100532.860.h5: 14.68060851097107
+Time taken for fft of rhone1khz_UTC_20200706_084132.860.h5: 15.723783016204834
+Time taken for fft of rhone1khz_UTC_20200706_090832.860.h5: 13.540677309036255
+Time taken for fft of rhone1khz_UTC_20200706_151533.505.h5: 15.757574796676636
+Time taken for fft of rhone1khz_UTC_20200706_102932.860.h5: 17.292083740234375
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_154238.931.h5: 11.749956369400024
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_092632.860.h5: 17.30536150932312
+Time taken for fft of rhone1khz_UTC_20200706_101732.860.h5: 15.847212791442871
+Time taken for fft of rhone1khz_UTC_20200706_115032.860.h5: 15.376278162002563
+Time taken for fft of rhone1khz_UTC_20200706_084732.860.h5: 22.089430809020996
+Time taken for fft of rhone1khz_UTC_20200706_092032.860.h5: 14.561815023422241
+Time taken for fft of rhone1khz_UTC_20200706_085032.860.h5: 12.861452579498291
+Time taken for fft of rhone1khz_UTC_20200706_104732.860.h5: 16.71835160255432
+Time taken for fft of rhone1khz_UTC_20200706_112632.860.h5: 15.655016660690308
+Time taken for fft of rhone1khz_UTC_20200706_114732.860.h5: 13.199917554855347
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_105632.860.h5: 15.621240615844727
+Time taken for fft of rhone1khz_UTC_20200706_111732.860.h5: 16.810693740844727
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_152433.505.h5: 14.021359205245972
+Time taken for fft of rhone1khz_UTC_20200706_114432.860.h5: 15.485188722610474
+Time taken for fft of rhone1khz_UTC_20200706_081432.860.h5: 20.274568557739258
+Time taken for fft of rhone1khz_UTC_20200706_105932.860.h5: 18.170629501342773
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_103532.860.h5: 14.298102378845215
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_072755.226.h5: 11.699703216552734
+Time taken for fft of rhone1khz_UTC_20200706_110832.860.h5: 19.53805947303772
+Time taken for fft of rhone1khz_UTC_20200706_154838.931.h5: 13.526238679885864
+Time taken for fft of rhone1khz_UTC_20200706_104432.860.h5: 16.247608184814453
+Time taken for fft of rhone1khz_UTC_20200706_102632.860.h5: 17.86248755455017
+Time taken for fft of rhone1khz_UTC_20200706_075632.860.h5: 14.845861196517944
+Time taken for fft of rhone1khz_UTC_20200706_075102.860.h5: 14.063447952270508
+Time taken for fft of rhone1khz_UTC_20200706_083832.860.h5: 24.773909330368042
+Time taken for fft of rhone1khz_UTC_20200706_081202.860.h5: 13.112678289413452
+Time taken for fft of rhone1khz_UTC_20200706_082632.860.h5: 15.872289180755615
+Time taken for fft of rhone1khz_UTC_20200706_154538.931.h5: 15.971685647964478
+Time taken for fft of rhone1khz_UTC_20200706_080602.860.h5: 16.114179372787476
+Time taken for fft of rhone1khz_UTC_20200706_105032.860.h5: 22.941932201385498
+Time taken for fft of rhone1khz_UTC_20200706_151233.505.h5: 17.526148319244385
+Time taken for fft of rhone1khz_UTC_20200706_160938.931.h5: 16.581774950027466
+Time taken for fft of rhone1khz_UTC_20200706_085402.860.h5: 12.52550458908081
+Time taken for fft of rhone1khz_UTC_20200706_090302.860.h5: 12.401731014251709
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_083532.860.h5: 20.619719743728638
+Time taken for fft of rhone1khz_UTC_20200706_093902.860.h5: 11.468721866607666
+Time taken for fft of rhone1khz_UTC_20200706_100232.860.h5: 21.947456121444702
+Time taken for fft of rhone1khz_UTC_20200706_160638.931.h5: 17.10343027114868
+Time taken for fft of rhone1khz_UTC_20200706_155138.931.h5: 17.85820698738098
+Time taken for fft of rhone1khz_UTC_20200706_113232.860.h5: 18.916128873825073
+Time taken for fft of rhone1khz_UTC_20200706_153638.931.h5: 20.52242088317871
+Time taken for fft of rhone1khz_UTC_20200706_073902.860.h5: 15.053261041641235
+Time taken for fft of rhone1khz_UTC_20200706_080302.860.h5: 17.33699059486389
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_091732.860.h5: 28.803757905960083
+Time taken for fft of rhone1khz_UTC_20200706_153323.672.h5: 19.454386949539185
+Time taken for fft of rhone1khz_UTC_20200706_093302.860.h5: 17.511550664901733
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_094202.860.h5: 12.202733039855957
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_094802.860.h5: 11.022469520568848
+Time taken for fft of rhone1khz_UTC_20200706_162138.931.h5: 13.717221021652222
+Time taken for fft of rhone1khz_UTC_20200706_111202.860.h5: 11.137468099594116
+Time taken for fft of rhone1khz_UTC_20200706_085702.860.h5: 13.14329218864441
+Time taken for fft of rhone1khz_UTC_20200706_101432.860.h5: 20.062310934066772
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_093002.860.h5: 11.492750883102417
+Time taken for fft of rhone1khz_UTC_20200706_074802.860.h5: 17.327229022979736
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_073602.860.h5: 17.54634189605713
+Time taken for fft of rhone1khz_UTC_20200706_094432.860.h5: 25.657976865768433
+Time taken for fft of rhone1khz_UTC_20200706_103302.860.h5: 11.620691061019897
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_160038.931.h5: 22.940796375274658
+Time taken for fft of rhone1khz_UTC_20200706_152133.505.h5: 24.07557201385498
+Time taken for fft of rhone1khz_UTC_20200706_084502.860.h5: 15.968414545059204
+Time taken for fft of rhone1khz_UTC_20200706_150933.505.h5: 23.24739670753479
+Time taken for fft of rhone1khz_UTC_20200706_113002.860.h5: 12.725994348526001
+Time taken for fft of rhone1khz_UTC_20200706_103002.860.h5: 11.080621004104614
+Time taken for fft of rhone1khz_UTC_20200706_110602.860.h5: 12.880281686782837
+Time taken for fft of rhone1khz_UTC_20200706_080002.860.h5: 13.427839279174805
+Time taken for fft of rhone1khz_UTC_20200706_112702.860.h5: 10.14013957977295
+Time taken for fft of rhone1khz_UTC_20200706_104802.860.h5: 10.800885915756226
+Time taken for fft of rhone1khz_UTC_20200706_084202.860.h5: 12.640269041061401
+Time taken for fft of rhone1khz_UTC_20200706_093602.860.h5: 16.547982454299927
+Time taken for fft of rhone1khz_UTC_20200706_095032.860.h5: 34.15209436416626
+Time taken for fft of rhone1khz_UTC_20200706_074202.860.h5: 14.917707204818726
+Time taken for fft of rhone1khz_UTC_20200706_100902.860.h5: 17.02935028076172
+Time taken for fft of rhone1khz_UTC_20200706_082402.860.h5: 14.421082258224487
+Time taken for fft of rhone1khz_UTC_20200706_092402.860.h5: 16.933287620544434
+Time taken for fft of rhone1khz_UTC_20200706_115102.860.h5: 12.827409744262695
+Time taken for fft of rhone1khz_UTC_20200706_104502.860.h5: 10.739078760147095
+Time taken for fft of rhone1khz_UTC_20200706_103832.860.h5: 33.276519536972046
+Time taken for fft of rhone1khz_UTC_20200706_151903.505.h5: 14.712660312652588
+Time taken for fft of rhone1khz_UTC_20200706_151603.505.h5: 14.570830821990967
+Time taken for fft of rhone1khz_UTC_20200706_090602.860.h5: 17.191251754760742
+Time taken for fft of rhone1khz_UTC_20200706_161538.931.h5: 20.56976079940796
+Time taken for fft of rhone1khz_UTC_20200706_114502.860.h5: 12.722048044204712
+Time taken for fft of rhone1khz_UTC_20200706_114202.860.h5: 17.625854969024658
+Time taken for fft of rhone1khz_UTC_20200706_080902.860.h5: 17.566697597503662
+Time taken for fft of rhone1khz_UTC_20200706_111802.860.h5: 13.38539719581604
+Time taken for fft of rhone1khz_UTC_20200706_081232.860.h5: 10.963845491409302
+Time taken for fft of rhone1khz_UTC_20200706_113602.860.h5: 17.341463088989258
+Time taken for fft of rhone1khz_UTC_20200706_072245.067.h5: 17.64413356781006
+Time taken for fft of rhone1khz_UTC_20200706_090902.860.h5: 16.097408056259155
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_075702.860.h5: 12.476842403411865
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_081502.860.h5: 13.554102182388306
+Time taken for fft of rhone1khz_UTC_20200706_105702.860.h5: 13.986104249954224
+Time taken for fft of rhone1khz_UTC_20200706_105102.860.h5: 11.168864250183105
+Time taken for fft of rhone1khz_UTC_20200706_084802.860.h5: 15.646250247955322
+Time taken for fft of rhone1khz_UTC_20200706_154608.931.h5: 11.632978916168213
+Time taken for fft of rhone1khz_UTC_20200706_101802.860.h5: 15.127452373504639
+Time taken for fft of rhone1khz_UTC_20200706_085432.860.h5: 10.815197229385376
+Time taken for fft of rhone1khz_UTC_20200706_161238.931.h5: 26.98737335205078
+Time taken for fft of rhone1khz_UTC_20200706_101202.860.h5: 19.52097725868225
+Time taken for fft of rhone1khz_UTC_20200706_110302.860.h5: 21.59495997428894
+Time taken for fft of rhone1khz_UTC_20200706_155208.931.h5: 10.687820196151733
+Time taken for fft of rhone1khz_UTC_20200706_103602.860.h5: 14.876395463943481
+Time taken for fft of rhone1khz_UTC_20200706_115332.860.h5: 34.40341901779175
+Time taken for fft of rhone1khz_UTC_20200706_075402.860.h5: 29.092164754867554
+Time taken for fft of rhone1khz_UTC_20200706_083602.860.h5: 12.226440906524658
+Time taken for fft of rhone1khz_UTC_20200706_154908.931.h5: 14.645965337753296
+Time taken for fft of rhone1khz_UTC_20200706_073055.226.h5: 20.8183650970459
+Time taken for fft of rhone1khz_UTC_20200706_080632.860.h5: 13.412267446517944
+Time taken for fft of rhone1khz_UTC_20200706_095632.860.h5: 35.64979958534241
+Time taken for fft of rhone1khz_UTC_20200706_085102.860.h5: 17.08911395072937
+Time taken for fft of rhone1khz_UTC_20200706_161008.931.h5: 13.498877763748169
+Time taken for fft of rhone1khz_UTC_20200706_082702.860.h5: 14.723790645599365
+Time taken for fft of rhone1khz_UTC_20200706_100302.860.h5: 13.015492916107178
+Time taken for fft of rhone1khz_UTC_20200706_092102.860.h5: 18.689029932022095
+Time taken for fft of rhone1khz_UTC_20200706_151303.505.h5: 13.360324621200562
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_090332.860.h5: 14.115445375442505
+Time taken for fft of rhone1khz_UTC_20200706_110902.860.h5: 16.988994121551514
+Time taken for fft of rhone1khz_UTC_20200706_152503.505.h5: 16.93331789970398
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200706_102702.860.h5: 16.392675161361694
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:213: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+slurmstepd: error: *** JOB 9303531 ON paula08 CANCELLED AT 2024-06-24T12:49:36 ***
