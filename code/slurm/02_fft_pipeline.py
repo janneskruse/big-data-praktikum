@@ -32,6 +32,7 @@ import zarr
 ############# Parse the command line arguments #############
 total_cpus = int(sys.argv[1])
 
+start_time = time.time()
 
 
 ############# Base paths and folder names #############
@@ -501,10 +502,11 @@ if __name__=='__main__':
         xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
         
-    
+    end_time = time.time() # end the timer
     print(20*"*")
     print("Calculation completed")
-    print("Computation time in seconds:", (-startT + time.time()))
+    print("Total computation time in seconds:", end_time-start_time) 
+    print("Computation time in seconds for fft:", (-startT + time.time()))
     print("Number of processed files:", n_files)
     print("Number of used cores:", n_cores)
     print("Time per File: ", ((-startT + time.time())/n_files))
