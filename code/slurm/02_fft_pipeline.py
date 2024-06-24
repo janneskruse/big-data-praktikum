@@ -23,11 +23,14 @@ import numpy as np
 import pandas as pd
 import scipy
 from scipy import signal, fft
-import dask.array as da
 import pyfftw
 import pyfftw.interfaces.dask_fft as dafft
 import pickle
 import zarr
+
+############# Parse the command line arguments #############
+total_cpus = int(sys.argv[1])
+
 
 
 ############# Base paths and folder names #############
@@ -183,39 +186,38 @@ def channel_fourier(data, args, taper, positions):
     # Unpack the arguments
     seg_len = args["seg_len"]
     end_channel_index, start_channel_index = args["end_channel_index"], args["start_channel_index"]
-    num_frequency_points = args["num_frequency_points"]
-    expected_channels = args["expected_channels"]
-    fft_dtype=args["fft_dtype"] # dtype: float32
+    fft_dtype = args["fft_dtype"]  # dtype: float32
     n_segments = positions.shape[0]
 
     # Pre-allocate the segments array
-    Fsegs=None
-    segments = [np.zeros((expected_channels, seg_len), dtype=fft_dtype) for _ in positions]
-    
-    # Fill the segments array
-    for i, pos in enumerate(positions):
-        sliced_data = data[pos:pos+seg_len]
-        segments[i] = sliced_data.T[start_channel_index:end_channel_index].astype(fft_dtype) # as float32
-    
-    # Pre-allocate the Fourier transformed segments array
-    Fsegs = np.zeros((n_segments, end_channel_index-start_channel_index, num_frequency_points), dtype=fft_dtype) # empty float32 array
+    Fsegs = np.zeros((n_segments, end_channel_index - start_channel_index, num_frequency_points), dtype=fft_dtype)  # empty float32 array
     
     # Pre-allocate the input array for FFTW
     fft_input = pyfftw.empty_aligned(seg_len, dtype=fft_dtype)
     # Create the FFTW object
-    fft_object = pyfftw.builders.rfft(fft_input) #, planner_effort='FFTW_ESTIMATE') #, threads=mp.cpu_count()//2)
-
-    # Compute the Fourier transform for each segment
-    for i in range(n_segments):
-        for channel_number, channel in enumerate(segments[i]):
-            #fft_input[:] = taper * channel  # Apply taper
-            np.multiply(taper, channel, out=fft_input)  # This is the closest to an in-place operation we can get here
-            fft_output = fft_object()  # Execute FFT
-            fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2 + 1e-10)))[0:num_frequency_points] # Compute power spectrum
-            fourier_transformed[0] = 0 # Remove DC component (average value of the signal)
-            Fsegs[i][channel_number] = fourier_transformed
+    fft_object = pyfftw.builders.rfft(fft_input)  # , planner_effort='FFTW_ESTIMATE') #, threads=mp.cpu_count()//2)
+    
+    # Prepare slices for efficient slicing
+    channel_slice = slice(start_channel_index, end_channel_index)
+    
+    for i, pos in enumerate(positions):
+        sliced_data = data[pos:pos + seg_len]
+        sliced_data = sliced_data.T[channel_slice].astype(fft_dtype)
         
-    return Fsegs # return the Fourier transformed segments
+        # Handle segments with varying lengths
+        if sliced_data.shape[1] != seg_len:
+            sliced_data = np.array([pad_or_truncate_channel(channel, seg_len) for channel in sliced_data])
+
+        # Compute the Fourier transform for each segment
+        for channel_number, channel in enumerate(sliced_data):
+            np.multiply(taper, channel, out=fft_input)  # Apply taper
+            fft_output = fft_object()  # Execute FFT
+            fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2 + 1e-10))[:num_frequency_points]  # Compute power spectrum
+            fourier_transformed[0] = 0  # Remove DC component (average value of the signal)
+            Fsegs[i][channel_number] = fourier_transformed
+    
+    return Fsegs  # return the Fourier transformed segments
+
  
 
 def create_spectro_segment(file_index, args, filelist):
@@ -244,7 +246,6 @@ def create_spectro_segment(file_index, args, filelist):
     n_samples=args["n_samples"]
     filename=filelist[file_index]
     float_type=args["fft_dtype"]
-    expected_channels=args["expected_channels"]
     
     #taper function
     taper = signal.windows.tukey(seg_len, 0.25)  # reduces the amplitude of the discontinuities at the boundaries, thereby reducing spectral leakage.
@@ -252,12 +253,6 @@ def create_spectro_segment(file_index, args, filelist):
     # Load the data
     xr_h5=xr.open_dataset(filename, engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
     data=xr_h5["Acoustic"].compute().values.astype(float_type)
-
-    
-    # Check if the data shape is correct
-    if not validate_data_shape(data, (n_samples, expected_channels)):
-        print(f"Data shape of {filename} is not correct.: {data.shape} != {(n_samples, expected_channels)}")
-        data = pad_or_truncate_data(data, n_samples)
         
     # the windowing function (Tukey window in this case) tapers at the ends, 
     # to avoid losing data at the ends of each file, 
@@ -266,10 +261,6 @@ def create_spectro_segment(file_index, args, filelist):
         xr_h5_2=xr.open_dataset(filelist[file_index+1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
         data_2=xr_h5_2["Acoustic"].compute().values.astype(float_type)
         data = np.concatenate((data, data_2[0:seg_len]), axis=0)
-    
-        if not validate_data_shape(data_2, (n_samples, expected_channels)):
-            data_2 = pad_or_truncate_data(data_2, n_samples)
-
     
     next_file_index = file_index+1
     file_pos = file_index * n_samples
@@ -293,35 +284,23 @@ def create_spectro_segment(file_index, args, filelist):
     return Fsegs, positions.shape[0] # return the Fourier transformed segments and the number of segments
 
 
-def validate_data_shape(data, expected_shape):
+def pad_or_truncate_channel(channel_data, seg_len):
     """
-    Validates the shape of the data.
+    Pads or truncates the channel data to the correct segment length.
     
     Args:
-        data (np.array): The data to validate.
-        expected_shape (tuple): The expected shape of the data.
+        channel_data (np.array): The channel data to pad or truncate.
+        seg_len (int): The segment length.
         
     Returns:
-        bool: True if the data shape is correct, False otherwise.
+        np.array: The padded or truncated channel data.
     """
-    return data.shape == expected_shape
-
-def pad_or_truncate_data(data, n_samples):
-    """
-    Pads or truncates the data to the correct length.
-    
-    Args:
-        data (np.array): The data to pad or truncate.
-        n_samples (int): The number of samples.
-        
-    Returns:
-        np.array: The padded or truncated data.
-    """
-    if data.shape[0] < n_samples:
-        data = np.pad(data, ((0, n_samples - data.shape[0]), (0, 0)), mode='constant')
+    if channel_data.shape[0] < seg_len:
+        return np.pad(channel_data, (0, seg_len - channel_data.shape[0]), mode='constant')
     else:
-        data = data[:n_samples]
-    return data
+        return channel_data[:seg_len]
+
+
 
 
 ##########Base settings#########
@@ -393,7 +372,7 @@ if __name__=='__main__':
     
     # print the settings
     print(20*"*")
-    print("Max number of CPUs: ", mp.cpu_count())
+    print("Max number of CPUs: ", total_cpus)
     print(f"Processed day: {day}.{month}.2020")
     print(f"Time resolution: {time_res} sec")
     print(f"Frequency resolution: {freq_res} Hz")
@@ -409,8 +388,8 @@ if __name__=='__main__':
     # print(f"Opening zarr {zarr_path} to write...")
     # # open the zarr in write mode
     # root = zarr.open(zarr_path, mode="w")
-    # z = root.zeros('data', shape=(n_segments_total, end_channel_index-start_channel_index, num_frequency_points), 
-    #                 chunks=(n_segments_file,end_channel_index-start_channel_index,num_frequency_points), 
+    # z = root.zeros('data', shape=(n_segments_total, expected_channels, num_frequency_points), 
+    #                 chunks=(n_segments_file,expected_channels,num_frequency_points), 
     #                 dtype=float_type)
     
     # print("Creating metadata...")
@@ -500,8 +479,8 @@ if __name__=='__main__':
 
     print(f"Creating zarr shape...")
     # creating zarr shape
-    z_shape=(n_segments_total, end_channel_index-start_channel_index, num_frequency_points) 
-    z_chunks=(n_segments_file,end_channel_index-start_channel_index,num_frequency_points)
+    z_shape=(n_segments_total, expected_channels, num_frequency_points) 
+    z_chunks=(n_segments_file,expected_channels,num_frequency_points)
 
     print("Creating metadata...")
     start=time.time()
@@ -561,7 +540,7 @@ if __name__=='__main__':
         split_up = [index_list]
 
     # Define the number of cores to be 90% of available cores, rounded down
-    n_cores = int(mp.cpu_count() * 0.9) // 1
+    n_cores = int(total_cpus * 0.9) // 1
     print("Number of cores used:", n_cores)
 
     startT = time.time() # start the timer
@@ -592,7 +571,7 @@ if __name__=='__main__':
         for i in liste:
             Fsegs, nseg = fft_results[i-int(liste[0])]
             nseg = int(nseg)
-            dask_array = da.from_array(Fsegs, chunks=(nseg, end_channel_index-start_channel_index, num_frequency_points))
+            dask_array = da.from_array(Fsegs, chunks=(nseg, expected_channels, num_frequency_points))
             xr_zarr["data"][running_index:running_index+nseg] = dask_array
             running_index += nseg
             
