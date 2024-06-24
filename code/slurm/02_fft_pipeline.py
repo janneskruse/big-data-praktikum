@@ -329,7 +329,7 @@ if __name__=='__main__':
     folder=folders[0]
     
     #path and name of resulting zarr-formatted data cube.
-    zarr_name = f"cryo_cube{folder}.zarr"
+    zarr_name = f"cryo_cube_{folder}.zarr"
     zarr_path = f"{zarr_base}/{zarr_name}"
     
     os.chdir(base) # change to the base directory
