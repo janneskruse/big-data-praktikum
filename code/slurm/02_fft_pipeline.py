@@ -5,7 +5,6 @@ import sys
 import shutil
 import psutil
 import multiprocessing as mp
-from IPython.display import display
 import re
 from datetime import datetime, timedelta
 from operator import itemgetter
@@ -21,8 +20,6 @@ import h5py
 import xarray as xr
 import numpy as np
 import pandas as pd
-from itables import init_notebook_mode, show
-init_notebook_mode(all_interactive=False)
 import scipy
 from scipy import signal, fft
 import dask.array as da
@@ -275,8 +272,10 @@ def create_spectro_segment(file_index, args, filelist):
         # to ensure that the last segment doesn't extend beyond the end of the data
         positions = np.arange(np.ceil((file_index)*n_samples/hop), np.floor((next_file_index*n_samples-seg_len)/hop)+1, dtype=int)*hop - file_pos
 
+    start=time.time()
     # Calculate the Fourier transformed segments
     Fsegs = channel_fourier(data, args, taper, positions)
+    print(f"Time taken for fft of {filename}: {time.time()-start}")
     
     return Fsegs, positions.shape[0] # return the Fourier transformed segments and the number of segments
 
@@ -354,34 +353,138 @@ if __name__=='__main__':
     print(f"Resulting overlap: {1-hop/seg_sample_len}")
     print(10*"*")
   
+    # # get the filenames and the total amount of segments
+    # filenames = get_filenames(folder, base)
+    # n_files=len(filenames)
+    # n_segments_total = int(np.floor((n_files*n_samples-seg_sample_len)/hop))+1 # total amount of segments
+
+    # print(f"Opening zarr {zarr_path} to write...")
+    # # open the zarr in write mode
+    # root = zarr.open(zarr_path, mode="w")
+    # z = root.zeros('data', shape=(n_segments_total, end_channel_index-start_channel_index, num_frequency_points), 
+    #                 chunks=(n_segments_file,end_channel_index-start_channel_index,num_frequency_points), 
+    #                 dtype=float_type)
+    
+    # print("Creating metadata...")
+    # start=time.time()
+    
+    # # get the dimensions metadata of the data
+    # dummy_file_path=os.path.join(base, folder, filenames[0])
+    # dummy_xr = xr.open_dataset(filenames[0], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
+    # attr = dummy_xr['Acoustic'].attrs
+    # zeit = datetime.fromisoformat(attr["ISO8601 Timestamp"])
+    # time_coords = [(zeit+timedelta(seconds=i*time_res)).replace(tzinfo=None) for i in range (n_segments_total)]
+    
+    # # set the metadata for the zarr
+    # metadata=root.create_group('metadata')
+    # metadata.create_dataset('loc_coords', data=location_coords)
+    # metadata.create_dataset('freq_coords', data=freq_coords)
+    # time_coordinates=metadata.empty('time_coords', shape=(len(time_coords)),dtype='<M8[ms]')    
+    # for i,times in enumerate(time_coords):
+    #     time_coordinates[i]=times
+
+    # print(f"metadata set in {time.time()-start}s:", metadata)
+
+    # # In the following lines, multiple cpu-cores calculate
+    # # a fft for each file simultanously.
+    # # Before that we split the whole data to be processed in to not overload the memory!
+
+    # # Determine available system memory 
+    # available_memory = psutil.virtual_memory().available * 0.8  # Use 80% of available memory (let's reserve some memory for the system and other processes)
+
+    # # Calculate how many files can be processed simultaneously
+    # memory_per_file = os.path.getsize(dummy_file_path)
+    # print("Memory per file (MB):", memory_per_file / (1024**2))
+    # files_at_once = int(available_memory / memory_per_file)
+    # files_at_once = max(1, files_at_once) # Ensure that at least one file is processed at once
+
+    # # Calculate the number of divisions 
+    # n_div = max(1, n_files // files_at_once)
+    # index_list = np.arange(n_files)
+
+    # # set split up
+    # if n_files > files_at_once:
+    #     split_up = np.array_split(index_list, n_div)
+    # else:
+    #     split_up = [index_list]
+
+    # # Define the number of cores to be 90% of available cores, rounded down
+    # n_cores = int(mp.cpu_count() * 0.9) // 1
+    # print("Number of cores used:", n_cores)
+
+    # startT = time.time() # start the timer
+
+    # running_index=0
+    # for liste in split_up:
+        
+    #     print(f"Starting FFT for split_up liste {liste}")
+    #     # Start the local timer
+    #     start = time.time() 
+        
+    #     # multiprocessing the fft calculation
+    #     pool=mp.Pool(n_cores)
+    #     fft_results=pool.starmap(create_spectro_segment, [(i, args, filenames) for i in liste])
+    #     pool.close()
+    #     pool.join()
+        
+    #     # Print the time taken to process the files
+    #     end=time.time() # end the local timer
+    #     print("Time taken for fft from splitup", end-start)
+        
+    #     fft_results = list(fft_results) # convert the map object to a list
+        
+    #     print("Writing liste to zarr...")
+    #     start=time.time()
+        
+    #     for i in liste:
+    #         Fsegs, nseg = fft_results[i-int(liste[0])]
+    #         nseg = int(nseg)
+    #         z[running_index:running_index+nseg]=Fsegs
+    #         running_index+=nseg
+    #     print(f"Wrote FFT to zarr in {time.time()-start}s")
+    
+    
+    
     # get the filenames and the total amount of segments
     filenames = get_filenames(folder, base)
     n_files=len(filenames)
     n_segments_total = int(np.floor((n_files*n_samples-seg_sample_len)/hop))+1 # total amount of segments
 
-    # open the zarr in write mode
-    root = zarr.open(zarr_path, mode="w")
-    z = root.zeros('data', shape=(n_segments_total, end_channel_index-start_channel_index, num_frequency_points), 
-                    chunks=(n_segments_file,end_channel_index-start_channel_index,num_frequency_points), 
-                    dtype=float_type)
-    
-    # get the dimensions metadata of the data
+    print(f"Creating zarr shape...")
+    # creating zarr shape
+    z_shape=(n_segments_total, end_channel_index-start_channel_index, num_frequency_points) 
+    z_chunks=(n_segments_file,end_channel_index-start_channel_index,num_frequency_points)
+
+    print("Creating metadata...")
+    start=time.time()
+
+    # Generate time coordinates based on the first file
     dummy_file_path=os.path.join(base, folder, filenames[0])
     dummy_xr = xr.open_dataset(filenames[0], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
     attr = dummy_xr['Acoustic'].attrs
-    zeit = datetime.fromisoformat(attr["ISO8601 Timestamp"])
-    time_coords = [(zeit+timedelta(seconds=i*time_res)).replace(tzinfo=None) for i in range (n_segments_total)]
+    start_time = np.datetime64(attr["ISO8601 Timestamp"]) # Convert to numpy datetime64[ns]
+    time_res_ms = time_res * 1000  # Convert time_res from seconds to milliseconds
+    time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ms')
     
-    # set the metadata for the zarr
-    metadata=root.create_group('metadata')
-    metadata.create_dataset('loc_coords', data=location_coords)
-    metadata.create_dataset('freq_coords', data=freq_coords)
-    time_coordinates=metadata.empty('time_coords', shape=(len(time_coords)),dtype='<M8[ms]')    
-    for i,times in enumerate(time_coords):
-        time_coordinates[i]=times
+    xr_zarr = xr.Dataset(
+        {
+            "data": (["time", "channel", "frequency"], np.zeros(z_shape, dtype=float_type)),
+        },
+        coords={
+            "time": time_coords,
+            "channel": location_coords,
+            "frequency": freq_coords,
+        },
+    )
+        
+    print(f"metadata created in {time.time()-start}s:")
 
-    print("metadata set:", metadata)
-
+    print(f"Creating and writing empty {zarr_path} with metadata...")
+    #xarray dataset to zarr
+    start=time.time()
+    xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+    print(f"zarr created in {time.time()-start}s")
+     
     # In the following lines, multiple cpu-cores calculate
     # a fft for each file simultanously.
     # Before that we split the whole data to be processed in to not overload the memory!
@@ -413,12 +516,14 @@ if __name__=='__main__':
 
     running_index=0
     for liste in split_up:
+        
+        print(f"Starting FFT for split_up liste {liste}")
         # Start the local timer
         start = time.time() 
         
         # multiprocessing the fft calculation
         pool=mp.Pool(n_cores)
-        pool.starmap(create_spectro_segment, [(i, args, filenames) for i in liste])
+        fft_results=pool.starmap(create_spectro_segment, [(i, args, filenames) for i in liste])
         pool.close()
         pool.join()
         
@@ -426,12 +531,19 @@ if __name__=='__main__':
         end=time.time() # end the local timer
         print("Time taken for fft from splitup", end-start)
         
-        res = list(res)
+        fft_results = list(fft_results) # convert the map object to a list
+        
+        print("Writing liste to zarr...")
+        start=time.time()
+        
         for i in liste:
-            Fsegs, nseg = res[i-int(liste[0])]
+            Fsegs, nseg = fft_results[i-int(liste[0])]
             nseg = int(nseg)
-            z[running_index:running_index+nseg]=Fsegs
+            xr_zarr["data"][running_index:running_index+nseg]=Fsegs
             running_index+=nseg
+        xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+        print(f"Wrote FFT to zarr in {time.time()-start}s")
+        
     
     print(20*"*")
     print("Calculation completed")
