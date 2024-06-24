@@ -588,13 +588,16 @@ if __name__=='__main__':
         print("Writing liste to zarr...")
         start=time.time()
         
+        # Convert results to Dask arrays and store them
         for i in liste:
             Fsegs, nseg = fft_results[i-int(liste[0])]
             nseg = int(nseg)
-            xr_zarr["data"][running_index:running_index+nseg]=Fsegs
-            running_index+=nseg
-        #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
-        print(f"Wrote FFT to zarr in {time.time()-start}s")
+            dask_array = da.from_array(Fsegs, chunks=(nseg, end_channel_index-start_channel_index, num_frequency_points))
+            xr_zarr["data"][running_index:running_index+nseg] = dask_array
+            running_index += nseg
+            
+        xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
+        print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
         
     
     print(20*"*")
