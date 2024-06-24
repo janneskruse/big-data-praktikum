@@ -184,12 +184,13 @@ def channel_fourier(data, args, taper, positions):
     seg_len = args["seg_len"]
     end_channel_index, start_channel_index = args["end_channel_index"], args["start_channel_index"]
     num_frequency_points = args["num_frequency_points"]
+    expected_channels = args["expected_channels"]
     fft_dtype=args["fft_dtype"] # dtype: float32
     n_segments = positions.shape[0]
 
     # Pre-allocate the segments array
     Fsegs=None
-    segments = [np.zeros((end_channel_index - start_channel_index, seg_len), dtype=fft_dtype) for _ in positions]
+    segments = [np.zeros((expected_channels, seg_len), dtype=fft_dtype) for _ in positions]
     
     # Fill the segments array
     for i, pos in enumerate(positions):
@@ -243,15 +244,21 @@ def create_spectro_segment(file_index, args, filelist):
     n_samples=args["n_samples"]
     filename=filelist[file_index]
     float_type=args["fft_dtype"]
+    expected_channels=args["expected_channels"]
     
     #taper function
     taper = signal.windows.tukey(seg_len, 0.25)  # reduces the amplitude of the discontinuities at the boundaries, thereby reducing spectral leakage.
     
     # Load the data
-    data=[]
     xr_h5=xr.open_dataset(filename, engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
     data=xr_h5["Acoustic"].compute().values.astype(float_type)
+
     
+    # Check if the data shape is correct
+    if not validate_data_shape(data, (n_samples, expected_channels)):
+        print(f"Data shape of {filename} is not correct.": data.shape)
+        data = pad_or_truncate_data(data, n_samples)
+        
     # the windowing function (Tukey window in this case) tapers at the ends, 
     # to avoid losing data at the ends of each file, 
     # the end of one file is overlapped with the beginning of the next file.
@@ -259,6 +266,10 @@ def create_spectro_segment(file_index, args, filelist):
         xr_h5_2=xr.open_dataset(filelist[file_index+1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
         data_2=xr_h5_2["Acoustic"].compute().values.astype(float_type)
         data = np.concatenate((data, data_2[0:seg_len]), axis=0)
+    
+        if not validate_data_shape(data_2, (n_samples, expected_channels)):
+            data_2 = pad_or_truncate_data(data_2, n_samples)
+
     
     next_file_index = file_index+1
     file_pos = file_index * n_samples
@@ -282,6 +293,36 @@ def create_spectro_segment(file_index, args, filelist):
     return Fsegs, positions.shape[0] # return the Fourier transformed segments and the number of segments
 
 
+def validate_data_shape(data, expected_shape):
+    """
+    Validates the shape of the data.
+    
+    Args:
+        data (np.array): The data to validate.
+        expected_shape (tuple): The expected shape of the data.
+        
+    Returns:
+        bool: True if the data shape is correct, False otherwise.
+    """
+    return data.shape == expected_shape
+
+def pad_or_truncate_data(data, n_samples):
+    """
+    Pads or truncates the data to the correct length.
+    
+    Args:
+        data (np.array): The data to pad or truncate.
+        n_samples (int): The number of samples.
+        
+    Returns:
+        np.array: The padded or truncated data.
+    """
+    if data.shape[0] < n_samples:
+        data = np.pad(data, ((0, n_samples - data.shape[0]), (0, 0)), mode='constant')
+    else:
+        data = data[:n_samples]
+    return data
+
 
 ##########Base settings#########
 #granularity of spectrogram
@@ -293,6 +334,7 @@ float_type='float32'
 channel_distance = 4 # distance between channels in meters
 cable_start, cable_end = 0, 9200 # cable section to be processed (in meters) - 0==start
 start_channel_index, end_channel_index = cable_start // channel_distance, cable_end // channel_distance # channel distances to indices
+expected_channels = end_channel_index - start_channel_index # expected number of channels
 
 # Additional parameters:
 file_length = 30 # Length of a single h5 file in seconds.
@@ -318,6 +360,7 @@ args = {
     "n_samples" : n_samples,
     "n_files" : n_segments_file,
     "seg_length" : seg_length,
+    "expected_channels" : expected_channels
 }
 
 
@@ -355,6 +398,7 @@ if __name__=='__main__':
     print(f"Time resolution: {time_res} sec")
     print(f"Frequency resolution: {freq_res} Hz")
     print(f"Resulting overlap: {1-hop/seg_sample_len}")
+    print(f"Expected number of channels: {expected_channels}")
     print(10*"*")
   
     # # get the filenames and the total amount of segments
@@ -490,7 +534,7 @@ if __name__=='__main__':
     print(f"Creating and writing empty {zarr_path} with metadata...")
     #xarray dataset to zarr
     start=time.time()
-    xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+    #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
     print(f"zarr created in {time.time()-start}s")
      
     # In the following lines, multiple cpu-cores calculate
@@ -501,7 +545,7 @@ if __name__=='__main__':
     available_memory = psutil.virtual_memory().available * 0.8  # Use 80% of available memory (let's reserve some memory for the system and other processes)
 
     # Calculate how many files can be processed simultaneously
-    memory_per_file = os.path.getsize(dummy_file_path)
+    memory_per_file = os.path.getsize(dummy_file_path)*1.5 # 1.5 times the size of the file, assuming some overhead
     print("Memory per file (MB):", memory_per_file / (1024**2))
     files_at_once = int(available_memory / memory_per_file)
     files_at_once = max(1, files_at_once) # Ensure that at least one file is processed at once
@@ -549,7 +593,7 @@ if __name__=='__main__':
             nseg = int(nseg)
             xr_zarr["data"][running_index:running_index+nseg]=Fsegs
             running_index+=nseg
-        xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
+        #xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
         print(f"Wrote FFT to zarr in {time.time()-start}s")
         
     
