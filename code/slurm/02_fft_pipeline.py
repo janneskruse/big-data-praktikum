@@ -515,6 +515,6 @@ if __name__=='__main__':
     # submit the script again
     if len(folders)>0: #
         print(f"Submitting the script again to process the next folder {folders[0]}")
-        os.chdir(f"{base}/code/slurm")
+        os.chdir(f"{repo_dir}/code/slurm")
         os.system(f"sbatch 02_fft_pipeline.sh")
     
