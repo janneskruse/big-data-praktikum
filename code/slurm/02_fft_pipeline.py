@@ -330,10 +330,16 @@ if __name__=='__main__':
     zarr_path = f"{zarr_base}/{zarr_name}"
     
     os.chdir(base) # change to the base directory
-    while os.path.exists(zarr_path):
-        folder=folders.pop(0) # remove and return the first element
+    while os.path.exists(zarr_path) and folders:  # Check if folders is not empty
+        folder = folders.pop(0)  # remove and return the first element
         zarr_name = f"cryo_cube{folder}.zarr"
         zarr_path = f"{zarr_base}/{zarr_name}"
+    
+    if not folders:
+        print("No more folders to process.")
+        sys.exit(0)
+    else:
+        print(f"Processing folder {folder}")
     
     #get the day and month
     day=folder[6:8]
@@ -434,3 +440,10 @@ if __name__=='__main__':
     print("Number of used cores:", n_cores)
     print("Time per File: ", ((-startT + time.time())/n_files))
     print(20*"*")
+    
+    # submit the script again
+    if len(folders)>0: #
+        print(f"Submitting the script again to process the next folder {folders[0]}")
+        os.chdir(f"{base}/code/slurm")
+        os.system(f"sbatch 02_fft_pipeline.sh")
+    
