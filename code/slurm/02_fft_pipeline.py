@@ -242,6 +242,7 @@ def create_spectro_segment(file_index, args, filelist):
     hop=args["hop"]
     n_samples=args["n_samples"]
     filename=filelist[file_index]
+    float_type=args["fft_dtype"]
     
     #taper function
     taper = signal.windows.tukey(seg_len, 0.25)  # reduces the amplitude of the discontinuities at the boundaries, thereby reducing spectral leakage.
@@ -249,14 +250,14 @@ def create_spectro_segment(file_index, args, filelist):
     # Load the data
     data=[]
     xr_h5=xr.open_dataset(filename, engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
-    data=xr_h5["Acoustic"].compute().values
+    data=xr_h5["Acoustic"].compute().values.astype(float_type)
     
     # the windowing function (Tukey window in this case) tapers at the ends, 
     # to avoid losing data at the ends of each file, 
     # the end of one file is overlapped with the beginning of the next file.
     if file_index!=n_files-1:
         xr_h5_2=xr.open_dataset(filelist[file_index+1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
-        data_2=xr_h5_2["Acoustic"].compute().values
+        data_2=xr_h5_2["Acoustic"].compute().values.astype(float_type)
         data = np.concatenate((data, data_2[0:seg_len]), axis=0)
     
     next_file_index = file_index+1
