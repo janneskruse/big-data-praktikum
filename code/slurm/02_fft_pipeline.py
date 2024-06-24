@@ -500,7 +500,7 @@ if __name__=='__main__':
             running_index += nseg
             
         xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
-        print(f"Wrote FFT to zarr using Dask in {time.time()-start}s")
+        print(f"Wrote FFT to zarr using Dask in {time.time()-start}s for split_up {liste}")
         
     end_time = time.time() # end the timer
     print(20*"*")
