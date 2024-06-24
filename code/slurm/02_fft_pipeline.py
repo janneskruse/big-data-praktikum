@@ -210,7 +210,7 @@ def channel_fourier(data, args, taper, positions):
             #fft_input[:] = taper * channel  # Apply taper
             np.multiply(taper, channel, out=fft_input)  # This is the closest to an in-place operation we can get here
             fft_output = fft_object()  # Execute FFT
-            fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2)))[0:num_frequency_points] # Compute power spectrum
+            fourier_transformed = ((10 * np.log(np.abs(fft_output) ** 2 + 1e-10)))[0:num_frequency_points] # Compute power spectrum
             fourier_transformed[0] = 0 # Remove DC component (average value of the signal)
             Fsegs[i][channel_number] = fourier_transformed
         
