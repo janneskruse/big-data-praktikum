@@ -502,10 +502,9 @@ if __name__=='__main__':
         xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s for split_up {liste}")
         
-    end_time = time.time() # end the timer
     print(20*"*")
     print("Calculation completed")
-    print("Total computation time in seconds:", end_time-start_time) 
+    print("Total computation time in seconds:", (-start_time+time.time())) 
     print("Computation time in seconds for fft:", (-startT + time.time()))
     print("Number of processed files:", n_files)
     print("Number of used cores:", n_cores)
@@ -513,7 +512,7 @@ if __name__=='__main__':
     print(20*"*")
     
     # submit the script again
-    if len(folders)>0: #
+    if len(folders)>30: #
         print(f"Submitting the script again to process the next folder {folders[0]}")
         os.chdir(f"{repo_dir}/code/slurm")
         os.system(f"sbatch 02_fft_pipeline.sh")
