@@ -333,7 +333,7 @@ file_length = 30 # Length of a single h5 file in seconds.
 sample_freq = 1000 #Sampling frequency in Hz of the recorded data.
 freq_max = 100 # maximum frequency cut off value for the analysis
 seg_length=1/freq_res #calculate window length corresponding to freq_res
-n_samples = file_length*sample_freq #number of samples in one file
+n_samples = file_length*sample_freq #number of samples in one file/total number of data points available in one file
 num_frequency_points = int(seg_length*freq_max+1)
 seg_sample_len=int(seg_length*sample_freq) # how many time points should be in one processing window
 n_segments_file=int(2*(file_length/seg_length)) # amount of segments for the desired window length
@@ -410,12 +410,12 @@ if __name__=='__main__':
     start=time.time()
 
     # Generate time coordinates based on the first file
-    dummy_file_path=os.path.join(base, folder, filenames[0])
+    # dummy_file_path=os.path.join(base, folder, filenames[0])
     dummy_xr = xr.open_dataset(filenames[0], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
     attr = dummy_xr['Acoustic'].attrs
     start_time = np.datetime64(attr["ISO8601 Timestamp"], 'ns') # Get the start time of the first file
     time_res_ms = time_res * 1000  # Convert time_res from seconds to milliseconds
-    time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ns') 
+    time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ms') 
     
     
     fft_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create an empty dask array
