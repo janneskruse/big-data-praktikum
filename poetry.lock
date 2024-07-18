@@ -731,6 +731,23 @@ files = [
 devel = ["colorama", "json-spec", "jsonschema", "pylint", "pytest", "pytest-benchmark", "pytest-cache", "validictory"]
 
 [[package]]
+name = "fcwt"
+version = "0.1.18"
+description = "A Python wrapper around the highly optimized C++ library for very fast calculation of the Continuous Wavelet Transform."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "fCWT-0.1.18-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:c93e1ec09b801c42747980d608a8d0f41cee61e58714acf85283f7369d26f225"},
+    {file = "fCWT-0.1.18.tar.gz", hash = "sha256:2057816212b0dd6e638941cc6c81030359b55995142ae1b098e9e065536fdee6"},
+]
+
+[package.dependencies]
+numpy = ">=1.14.5"
+
+[package.extras]
+tests = ["pytest (<6)"]
+
+[[package]]
 name = "fonttools"
 version = "4.53.0"
 description = "Tools to manipulate font files"
@@ -3504,4 +3521,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "293e39180bb35b9a853a76c8db9bf551226d87dc7efd7083e4db5694d2d231e7"
+content-hash = "fdabf20bd0d945b7486568fb45524639e1e6a94e010ab1b7117b9d14b572952e"

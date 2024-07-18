@@ -22,6 +22,7 @@ jupyter = {version = "^1.0.0", extras = ["complete"]}
 notebook = "^7.2.1"
 nbconvert = "^7.16.4"
 zarr = "^2.18.2"
+fcwt = "^0.1.18"
 
 
 [tool.poetry.group.dev.dependencies]
