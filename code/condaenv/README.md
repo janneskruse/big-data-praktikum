@@ -33,4 +33,10 @@ To ensure the kernel is installed correctly, run:
     jupyter kernelspec list
    ```
    
-You should now be able to use all the notebooks and execute all the scripts without a problem. If one of the scripts fail, look into the corresponding sbatch file and see if you have the right configurations for the conda env to be used there.
+You should now be able to use all the notebooks and execute all the scripts without a problem. If one of the scripts fails, look into the corresponding sbatch file and see if you have the right configurations for the conda env to be used there.
+
+## Updating the environment
+If you update the yaml file, you can easily update your conda environment as well by running:
+   ```bash
+    conda env update --file environment.yml --prune
+   ```
