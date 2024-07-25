@@ -6,6 +6,7 @@ dependencies:
   - python=3.9
   - pip
   - pip:
+      - lexcube==0.4.16
       - jupyter[complete]
       - ipykernel==6.29.4
       - jupyter_contrib_nbextensions==0.7.0

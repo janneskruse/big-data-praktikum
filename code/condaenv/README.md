@@ -33,6 +33,23 @@ To ensure the kernel is installed correctly, run:
     jupyter kernelspec list
    ```
    
+## Step 5: Using Lexcube
+It might be that using Lexcube can be a little bit triccky for you when operating with Jupyter earlier than 5.2. Here you might find conflicts inside the notebook to actually find the lexcube installation.
+You can check this by running:
+   ```bash
+   !pip show lexcube
+   ```
+If so, you would need to install from the notebook itself using:
+   ```bash
+   !pip install lexcube
+   ``` 
+After that it is important to install the lexcube javascript nb extension so the webapp can render the cube.
+you can do so by running the following inside your activated conda environment in the command line:
+   ```bash
+    jupyter nbextension install --py lexcube --user
+    jupyter nbextension enable --py lexcube --user
+   ```
+
 You should now be able to use all the notebooks and execute all the scripts without a problem. If one of the scripts fails, look into the corresponding sbatch file and see if you have the right configurations for the conda env to be used there.
 
 ## Updating the environment
