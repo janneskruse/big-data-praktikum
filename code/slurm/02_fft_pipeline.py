@@ -410,7 +410,7 @@ if __name__=='__main__':
     start=time.time()
 
     # Generate time coordinates based on the first file
-    # dummy_file_path=os.path.join(base, folder, filenames[0])
+    dummy_file_path=os.path.join(base, folder, filenames[0])
     dummy_xr = xr.open_dataset(filenames[0], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
     attr = dummy_xr['Acoustic'].attrs
     start_time = np.datetime64(attr["ISO8601 Timestamp"], 'ns') # Get the start time of the first file
