@@ -1,0 +1,68 @@
+Total CPUs: 20
+Base data folder:/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020
+Number of folders before moving files: 34
+Number of folders after moving files: 34
+base folder: /work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020
+Processing folder 20200704
+********************
+Max number of CPUs:  128
+Processed day: 04.07.2020
+Time resolution: 0.1 sec
+Frequency resolution: 1 Hz
+Resulting overlap: 0.9
+Expected number of channels: 2300
+**********
+Number of files: 10
+filenames ['rhone2das_UTC_20200704_155030.049.h5', 'rhone2das_UTC_20200704_155100.049.h5', 'rhone2das_UTC_20200704_155130.049.h5', 'rhone2das_UTC_20200704_155200.049.h5', 'rhone2das_UTC_20200704_155230.049.h5', 'rhone2das_UTC_20200704_155300.049.h5', 'rhone2das_UTC_20200704_155330.049.h5', 'rhone2das_UTC_20200704_155400.049.h5', 'rhone2das_UTC_20200704_155430.049.h5', 'rhone2das_UTC_20200704_155500.049.h5']
+Creating zarr shape...
+Creating metadata...
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:402: DeprecationWarning: parsing timezone aware datetimes is deprecated; this will raise an error in the future
+  start_time = np.datetime64(attr["ISO8601 Timestamp"], 'ns') # Get the start time of the first file
+<xarray.Dataset> Size: 3GB
+Dimensions:    (time: 2991, channel: 2300, frequency: 101)
+Coordinates:
+  * time       (time) datetime64[ns] 24kB 2020-07-04T15:50:30.049000 ... 2020...
+  * channel    (channel) int64 18kB 0 4 8 12 16 20 ... 9180 9184 9188 9192 9196
+  * frequency  (frequency) float64 808B 0.0 1.0 2.0 3.0 ... 97.0 98.0 99.0 100.0
+Data variables:
+    fft        (time, channel, frequency) float32 3GB dask.array<chunksize=(60, 2300, 101), meta=np.ndarray>
+metadata created in 0.12606549263000488s:
+Creating and writing empty /work/ju554xqou-cryo_cube/cryo_cube_20200704.zarr with metadata...
+zarr created in 1.30230712890625s
+Memory per file (MB): 170.40367126464844
+Number of cores used: 115
+Starting FFT for split_up liste [0 1 2 3 4 5 6 7 8 9]
+Starting fft of rhone2das_UTC_20200704_155030.049.h5: 1721970430.7738874
+Starting fft of rhone2das_UTC_20200704_155500.049.h5: 1721970430.9118443
+Starting fft of rhone2das_UTC_20200704_155100.049.h5: 1721970431.0694938
+Starting fft of rhone2das_UTC_20200704_155330.049.h5: 1721970431.1187623
+Starting fft of rhone2das_UTC_20200704_155200.049.h5: 1721970431.170771
+Starting fft of rhone2das_UTC_20200704_155300.049.h5: 1721970431.172875
+Starting fft of rhone2das_UTC_20200704_155430.049.h5: 1721970431.2008376
+Starting fft of rhone2das_UTC_20200704_155230.049.h5: 1721970431.2429662
+Starting fft of rhone2das_UTC_20200704_155130.049.h5: 1721970431.254026
+Starting fft of rhone2das_UTC_20200704_155400.049.h5: 1721970431.2575397
+Time taken for fft of rhone2das_UTC_20200704_155500.049.h5: 3.26545786857605
+Time taken for fft of rhone2das_UTC_20200704_155030.049.h5: 3.548823118209839
+Time taken for fft of rhone2das_UTC_20200704_155100.049.h5: 3.495222806930542
+Time taken for fft of rhone2das_UTC_20200704_155330.049.h5: 3.533849000930786
+Time taken for fft of rhone2das_UTC_20200704_155300.049.h5: 3.5065908432006836
+Time taken for fft of rhone2das_UTC_20200704_155430.049.h5: 3.500584840774536
+Time taken for fft of rhone2das_UTC_20200704_155200.049.h5: 3.537318229675293
+Time taken for fft of rhone2das_UTC_20200704_155130.049.h5: 3.497140884399414
+Time taken for fft of rhone2das_UTC_20200704_155230.049.h5: 3.51908278465271
+Time taken for fft of rhone2das_UTC_20200704_155400.049.h5: 3.5360193252563477
+********************
+Time taken for fft from splitup: 6.657616853713989
+Time per File: 0.6657616853713989
+********************
+Writing liste to zarr...
+Wrote FFT to zarr using Dask in 1.6577281951904297s for split_up [0 1 2 3 4 5 6 7 8 9]
+********************
+Calculation completed
+Total computation time in seconds: 9.762263298034668
+Computation time in seconds for fft and Zarr storage: 8.315801858901978
+Number of processed files: 10
+Number of used cores: 115
+********************
+Submitting the script again to process the next folder 20200704

@@ -30,11 +30,6 @@ import pyfftw.interfaces.dask_fft as dafft
 import pickle
 import zarr
 
-#visualization
-import lexcube as lc
-from itables import init_notebook_mode, show
-init_notebook_mode(all_interactive=False)
-
 ############# Parse the command line arguments #############
 total_cpus = int(mp.cpu_count())
 
@@ -46,8 +41,8 @@ repo_dir = os.popen('git rev-parse --show-toplevel').read().strip()
 load_dotenv(dotenv_path=f"{repo_dir}/.env")
 
 ###########get the environment vairables#########
-base=os.getenv("baseFolder")
-zarr_base=os.getenv("zarrBaseFolder")
+base=os.getenv("BASE_FOLDER")
+zarr_base=os.getenv("ZARR_BASE_FOLDER")
 print(f"Base data folder:{base}")
 
 startTime = time.time()
@@ -297,7 +292,6 @@ def create_spectro_segment(file_index, args, filelist):
     positions = positions[positions + seg_len <= len(data)]
     
     start=time.time()
-    print(f"Starting fft of {filename}: {start}")
     Fsegs = channel_fourier(data, args, taper, positions)
     print(f"Time taken for fft of {filename}: {time.time()-start}")
     
@@ -385,7 +379,7 @@ if __name__=='__main__':
     print(10*"*")
     
     # get the filenames and the total amount of segments
-    filenames = get_filenames(folder, base)[0:10]
+    filenames = get_filenames(folder, base) #[0:10]
     n_files=len(filenames)
     args["n_files"] = n_files
     print("Number of files:", n_files)
@@ -475,7 +469,13 @@ if __name__=='__main__':
         
         # Print the time taken to process the files
         end=time.time() # end the local timer
-        print("Time taken for fft from splitup", end-start)
+        fft_time=end-start
+        time_per_file=fft_time/len(liste)
+        
+        print(20*"*")
+        print(f"Time taken for fft from splitup: {fft_time}")
+        print(f"Time per File: {time_per_file}")
+        print(20*"*")
         
         fft_results = list(fft_results) # convert the map object to a list
         
@@ -496,10 +496,9 @@ if __name__=='__main__':
     print(20*"*")
     print("Calculation completed")
     print("Total computation time in seconds:", time.time()-startTime) 
-    print("Computation time in seconds for fft:", time.time()-startT)
+    print("Computation time in seconds for fft and Zarr storage:", time.time()-startT)
     print("Number of processed files:", n_files)
     print("Number of used cores:", n_cores)
-    print("Time per File: ", ((-startT + time.time())/n_files))
     print(20*"*")
     
     # submit the script again
