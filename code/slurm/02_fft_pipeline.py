@@ -11,11 +11,17 @@ from operator import itemgetter
 import fnmatch
 from dotenv import load_dotenv
 
+# get the base path of the repository
+repo_dir = os.popen('git rev-parse --show-toplevel').read().strip()
+###load the .env file
+load_dotenv(dotenv_path=f"{repo_dir}/.env")
+print(f"FFTW library loaded: {os.environ.get('LD_LIBRARY_PATH')}")
+
 #benchmarking
 import time
-import cProfile
-import pstats
-import io
+# import cProfile
+# import pstats
+# import io
 
 # data handling
 import h5py
@@ -24,23 +30,16 @@ import dask.array as da
 import numpy as np
 import pandas as pd
 import scipy
-from scipy import signal, fft
+from scipy import signal #, fft
 import pyfftw
-import pyfftw.interfaces.dask_fft as dafft
-import pickle
-import zarr
+#import pyfftw.interfaces.dask_fft as dafft
+# import pickle
+# import zarr
 
 ############# Parse the command line arguments #############
 total_cpus = int(mp.cpu_count())
 
-
-############# Base paths and folder names #############
-# get the base path of the repository
-repo_dir = os.popen('git rev-parse --show-toplevel').read().strip()
-###load the .env file
-load_dotenv(dotenv_path=f"{repo_dir}/.env")
-
-###########get the environment vairables#########
+###########get the folder environment vairables#########
 base=os.getenv("BASE_FOLDER")
 zarr_base=os.getenv("ZARR_BASE_FOLDER")
 print(f"Base data folder:{base}")
@@ -173,6 +172,52 @@ def get_filenames(folder, base):
     
     return  sorted_files 
 
+def channel_wavelet_fcwt(data, seg_len, hop, NU, freq_max, ind_a, ind_e):
+    """
+    Applies Wavelet Transformation to segments of DAS records to compute time-frequency representations.
+
+    Args:
+        data (ndarray): The raw data from DAS channels.
+        seg_len (int): Segment length.
+        hop (int): Hop size.
+        NU (int): Sampling frequency.
+        freq_max (int): Maximum frequency for wavelet transformation.
+        ind_a (int): Start index for channels.
+        ind_e (int): End index for channels.
+
+    Returns:
+        ndarray: A 3D array containing the Wavelet transform for each segment and channel.
+    """
+    
+    seg_len = args["seg_len"]
+    hop = args["hop"]
+    freq_max = args["freq_max"]
+    ind_a = args["start_channel_index"]
+    ind_e = args["end_channel_index"]
+    NU = args["sample_freq"]
+    
+    
+    positions = np.arange(0, data.shape[0] - seg_len, hop)
+    segs = [data[pos:pos + seg_len] for pos in positions]  # Dividing the data into segments
+    segs = [seg.T[ind_a:ind_e] for seg in segs]  # Transposing the segments to get time series for each channel
+    nseg = len(segs)
+    nfreqs = freq_max  # Number of frequency bins
+
+    Wsegs = np.zeros((nseg, ind_e - ind_a, nfreqs))
+
+    # Inside the channel_wavelet_fcwt function, adjust the nfreqs based on actual cwt_data output
+    for i in range(nseg):
+        for channel_number, channel in enumerate(segs[i]):
+            freqs, cwt_data = fcwt.cwt(channel, NU, 1, freq_max, nfreqs)
+            # Update nfreqs based on the actual output size of cwt_data, if necessary
+            nfreqs_actual = cwt_data.shape[1]  # Assuming cwt_data shape is (time_points, frequency_bins)
+            if i == 0 and channel_number == 0:  # Adjust the Wsegs array size only once
+                Wsegs = np.zeros((nseg, ind_e - ind_a, nfreqs_actual))
+            mean_cwt_data = np.mean(10 * np.log(np.abs(cwt_data)**2), axis=0)
+            Wsegs[i][channel_number] = mean_cwt_data
+    
+    return Wsegs
+
 def channel_fourier(data, args, taper, positions):
     """
     Applies the Fourier transform to segments of the DAS records using the pyFFTW library.
@@ -210,9 +255,6 @@ def channel_fourier(data, args, taper, positions):
     fft_input = pyfftw.empty_aligned(seg_len, dtype=fft_dtype)
     # Create the FFTW object
     fft_object = pyfftw.builders.rfft(fft_input)  # , planner_effort='FFTW_ESTIMATE') #, threads=mp.cpu_count()//2)
-    
-    # Prepare slices for efficient slicing
-    channel_slice = slice(start_channel_index, end_channel_index)
     
     for i in range(n_segments):
         for channel_number, channel in enumerate(segments[i]):
@@ -263,14 +305,14 @@ def create_spectro_segment(file_index, args, filelist):
     
     f = h5py.File(filename,'r')
     dset=f['Acoustic']
-    data = np.array(dset)
+    data = np.array(dset, dtype=float_type)
     
     if file_index < n_files - 1:
         #xr_h5_2 = xr.open_dataset(filelist[file_index + 1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
         #data_2 = xr_h5_2["Acoustic"].compute().values.astype(float_type)
         f = h5py.File(filelist[file_index+1],'r')
         dset=f['Acoustic']
-        data_2 = np.array(dset)
+        data_2 = np.array(dset, dtype=float_type)
         data = np.concatenate((data, data_2[0:seg_len]), axis=0)
     
     next_file_index = file_index+1
@@ -295,7 +337,11 @@ def create_spectro_segment(file_index, args, filelist):
     Fsegs = channel_fourier(data, args, taper, positions)
     print(f"Time taken for fft of {filename}: {time.time()-start}")
     
-    return Fsegs, positions.shape[0]
+    start=time.time()
+    Wsegs = channel_wavelet_fcwt(data, args)
+    print(f"Time taken for wavelet transformation of {filename}: {time.time()-start}")
+    
+    return Fsegs, Wsegs, positions.shape[0]
 
 
 
@@ -336,6 +382,8 @@ args = {
     "hop" : hop,
     "n_samples" : n_samples,
     "seg_length" : seg_length,
+    "freq_max" : freq_max,
+    "sample_freq" : sample_freq,
     "expected_channels" : expected_channels
 }
 
@@ -484,10 +532,12 @@ if __name__=='__main__':
         
         # Convert results to Dask arrays and store them
         for i in liste:
-            Fsegs, nseg = fft_results[i-int(liste[0])]
+            Fsegs, Wsegs, nseg = fft_results[i-int(liste[0])]
             nseg = int(nseg)
-            dask_array = da.from_array(Fsegs, chunks=(nseg, expected_channels, num_frequency_points))
-            xr_zarr["fft"][running_index:running_index+nseg] = dask_array
+            fft_dask_array = da.from_array(Fsegs, chunks=(nseg, expected_channels, num_frequency_points))
+            cwt_dask_array = da.from_array(Wsegs, chunks=(nseg, expected_channels, num_frequency_points))
+            xr_zarr["fft"][running_index:running_index+nseg] = fft_dask_array
+            xr_zarr["cwt"][running_index:running_index+nseg] = cwt_dask_array
             running_index += nseg
             
         xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True)
