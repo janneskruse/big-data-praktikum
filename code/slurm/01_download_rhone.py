@@ -9,11 +9,26 @@ import logging
 from multiprocessing import Pool, cpu_count
 from collections import defaultdict
 
-base_url = "https://cloud.scadsai.uni-leipzig.de/index.php/s/gozxE5r9YdwGL8w/download"
-username = "j.kruse@studserv.uni-leipzig.de"
-password = ""
+######## set the URL and credentials ########
+# get the base path of the git repository
+repo_dir = os.popen('git rev-parse --show-toplevel').read().strip()
+###load the .env file
+load_dotenv(dotenv_path=f"{repo_dir}/.env")
 
-storage_path = "/work/le837wmue-Rhone_download"
+#get the environment vairables
+base=os.getenv("BASE_FOLDER")
+
+# URL for the whole dataset:
+base_url = os.getenv("NEXTCLOUD_BASE")
+# set the credentials
+username = os.getenv("NEXTCLOUD_USERNAME")
+password = os.getenv("NEXTCLOUD_PW")
+
+print(f"Cloudbase: {base_url}")
+
+######## set the storage path ########
+# Create the directory if it does not exist
+storage_path = base #"/work/le837wmue-Rhone_download"
 os.makedirs(storage_path, exist_ok=True)
 
 def unzip_file(zip_path, extract_path):
