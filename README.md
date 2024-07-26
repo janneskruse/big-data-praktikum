@@ -4,6 +4,7 @@ Git Repository zum Kurs [Big Data Praktikum](https://git.informatik.uni-leipzig.
 
 ---
 authors: Louis Trinkle, Jannes Kruse
+
 ---
     
 ## Repo structure
