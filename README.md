@@ -3,6 +3,36 @@
 Use Jupyterlab Software to load FFTW 3.3.10
     - This needs to be somehow implemented into slurm later on
     
+## Repo structure
+All the code developed during the course can be found inside [code](./code/).
+Inside [code](./code/). there is thre folders:
+
+- [condaenv](./code/condaenv/) to setup the conda environment for all the scripts present
+- [notebooks](./code/notebooks) with all the notebooks explaining the pipelines and to visualize the cubes. This includes a [script](./code/notebooks/AWS_streaming.ipynb) to stream an example cube from an AWS S3 Bucket uploaded in the following pipeline: .
+- [slurm](./code/slurm/) containing the python pipelines for uploading the files to the cluster from the corresponding cloud or storage location, creating the cube including a fourier and wavelet transformation and a pipeline to upload resulting cubes to an AWS S3 Bucket
+
+The key hardcoded variables, including password access to AWS or the Nextcloud are stored in an .env file loaded by teh scripts. To be able to run the scripts, you would have to create a new .env file and copy the following into it:
+
+```
+BASE_FOLDER="/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020"
+ZARR_BASE_FOLDER="/work/ju554xqou-cryo_cube"
+FLOAT_TYPE=float32
+FREQ_RES=1
+FREQ_MAX=100
+TIME_RES=0.1
+FILE_LENGTH=30
+SAMPLE_FREQ=1000
+CHANNEL_DISTANCE=4
+CABLE_START=0
+CABLE_END=9200
+AWS_KEY=#yourawskey
+NEXTCLOUD_BASE = "https://cloud.scadsai.uni-leipzig.de/index.php/s/gozxE5r9YdwGL8w/download"
+NEXTCLOUD_USERNAME=#youremail@example.de
+NEXTCLOUD_PW=""
+```
+
+Be aware, that the password for AWS and the cloud you will have to provide yourself.
+
 ## Installation
 The instructions on how to get the scripts running with the correct conda environment can be found [here](./code/condaenv).
 
