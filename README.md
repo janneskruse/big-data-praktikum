@@ -1,7 +1,10 @@
 # Big-Data-Praktikum
 
-Use Jupyterlab Software to load FFTW 3.3.10
-    - This needs to be somehow implemented into slurm later on
+Git Repository zum Kurs [Big Data Praktikum](https://git.informatik.uni-leipzig.de/dbs/big-data-praktikum/-/tree/master). Zum Thema Signal Processing on Cryoseismological data from Rhônegletscher (Switzerland) gehöriges Git Repo: [CryoCube](https://github.com/JosepinaU/CryoCube).
+
+---
+authors: Louis Trinkle, Jannes Kruse
+---
     
 ## Repo structure
 All the code developed during the course can be found inside [code](./code/).
