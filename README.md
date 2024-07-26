@@ -84,3 +84,37 @@ The instructions on how to get the scripts running with the correct conda enviro
 
 - We apply the Fourier transform (FFT) to each channel within each segment.
 - The FFT is applied to transform the time-domain data into the frequency domain, giving us the frequency content of the signal for that specific segment and channel.
+
+## AWS Set-up
+
+1. Create AWS-Account
+2. Make [Access Key](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials/access-key-wizard) and...
+3. adding it to your config AWS file following Option 3 of this [tutorial](https://wellarchitectedlabs.com/common/documentation/aws_credentials/).
+4. Create S3 Bucket and upload .zarr following the S3Upload Notebook.
+5. Set the Bucket Policy] to public. Add this:
+
+``(json)
+{
+    "Version": "2012-10-17",{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadForAllObjects",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::das-test-cube/*"
+        }
+    ]
+}
+    "Statement": [
+        {
+            "Sid": "PublicReadForAllObjects",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::your_s3_bucket/*"
+        }
+    ]
+}
+```
