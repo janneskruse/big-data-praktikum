@@ -90,7 +90,7 @@ The instructions on how to get the scripts running with the correct conda enviro
 1. Create an AWS-Account
 2. Obtain an [Access Key](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials/access-key-wizard) 
 3. add it to your config AWS file - follow Option 3 for this [tutorial](https://wellarchitectedlabs.com/common/documentation/aws_credentials/).
-4. Create S3 Bucket and upload .zarr following the S3Upload Notebook here.
+4. Create S3 Bucket and upload .zarr following the S3Upload Notebook [here](./code/notebooks/S3Upload.ipynb).
 5. Set the Bucket Policy to public. To do so, add this:
 
 ```(json)
