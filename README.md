@@ -87,26 +87,15 @@ The instructions on how to get the scripts running with the correct conda enviro
 
 ## AWS Set-up
 
-1. Create AWS-Account
-2. Make [Access Key](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials/access-key-wizard) and...
-3. adding it to your config AWS file following Option 3 of this [tutorial](https://wellarchitectedlabs.com/common/documentation/aws_credentials/).
-4. Create S3 Bucket and upload .zarr following the S3Upload Notebook.
-5. Set the Bucket Policy] to public. Add this:
+1. Create an AWS-Account
+2. Obtain an [Access Key](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials/access-key-wizard) 
+3. add it to your config AWS file - follow Option 3 for this [tutorial](https://wellarchitectedlabs.com/common/documentation/aws_credentials/).
+4. Create S3 Bucket and upload .zarr following the S3Upload Notebook here.
+5. Set the Bucket Policy to public. To do so, add this:
 
-``(json)
+```(json)
 {
-    "Version": "2012-10-17",{
     "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadForAllObjects",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::das-test-cube/*"
-        }
-    ]
-}
     "Statement": [
         {
             "Sid": "PublicReadForAllObjects",
