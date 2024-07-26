@@ -11,6 +11,10 @@
 #SBATCH --mail-type=ALL 
 #SBATCH -o "01_download_rhone.%j.txt"  # j for the job id
 
+# ACTIVATE ANACONDA
+source /home/sc.uni-leipzig.de/${USER}/.bashrc
+source activate rhoneCube
+
 # Determine the root directory of the Git repository
 REPO_ROOT=$(git rev-parse --show-toplevel)
 
@@ -18,4 +22,5 @@ REPO_ROOT=$(git rev-parse --show-toplevel)
 cd "$REPO_ROOT"
 
 # RUN SCRIPT
-poetry run python code/slurm/01_download_rhone.py
+#poetry run python code/slurm/01_download_rhone.py
+python3 -u code/slurm/01_download_rhone.py

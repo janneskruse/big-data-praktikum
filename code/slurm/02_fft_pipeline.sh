@@ -12,6 +12,11 @@
 #SBATCH --mail-type=ALL 
 #SBATCH -o "02_fft_pipeline.%j.txt"
 
+# ACTIVATE ANACONDA
+source /home/sc.uni-leipzig.de/${USER}/.bashrc
+source activate rhoneCube
+
+
 # Determine the root directory of the Git repository
 REPO_ROOT=$(git rev-parse --show-toplevel)
 
@@ -23,7 +28,8 @@ TOTAL_CPUS=$((SLURM_NTASKS * SLURM_CPUS_PER_TASK))
 echo "Total CPUs: $TOTAL_CPUS"
 
 # Pass this number to the Python script, which can use it to set the number of processes in multiprocessing.Pool
-poetry run python -u code/slurm/02_fft_pipeline.py $TOTAL_CPUS
+#poetry run python -u code/slurm/02_fft_pipeline.py $TOTAL_CPUS
+python3 -u code/slurm/02_fft_pipeline.py $TOTAL_CPUS
 
 # # Print CPU information for debugging
 # echo "SLURM job allocated CPUs: $SLURM_CPUS_ON_NODE"
