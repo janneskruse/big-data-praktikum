@@ -29,9 +29,16 @@ AWS_KEY=#yourawskey
 NEXTCLOUD_BASE = "https://cloud.scadsai.uni-leipzig.de/index.php/s/gozxE5r9YdwGL8w/download"
 NEXTCLOUD_USERNAME=#youremail@example.de
 NEXTCLOUD_PW=""
+LD_LIBRARY_PATH=/home/sc.uni-leipzig.de/ju554xqou/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
 ```
 
 Be aware, that the password for AWS and the cloud you will have to provide yourself.
+The LD_LIBRARY_PATH needs to be set for the libfftw3f.so.3 library which we installed with conda. This is needed for the wavelet transformation we implemented.
+You can get the path by running the following in your activated conda environment:
+```bash
+find $CONDA_PREFIX -name "libfftw3f.so.3"
+```
+
 
 ## Installation
 The instructions on how to get the scripts running with the correct conda environment can be found [here](./code/condaenv).
