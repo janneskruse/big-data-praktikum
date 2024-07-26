@@ -33,6 +33,7 @@ import scipy
 from scipy import signal #, fft
 import pyfftw
 #import pyfftw.interfaces.dask_fft as dafft
+import fcwt
 # import pickle
 # import zarr
 
@@ -172,7 +173,7 @@ def get_filenames(folder, base):
     
     return  sorted_files 
 
-def channel_wavelet_fcwt(data, seg_len, hop, NU, freq_max, ind_a, ind_e):
+def channel_wavelet_fcwt(data, args):
     """
     Applies Wavelet Transformation to segments of DAS records to compute time-frequency representations.
 
@@ -451,11 +452,13 @@ if __name__=='__main__':
     time_coords = start_time + np.arange(n_segments_total) * np.timedelta64(int(time_res_ms), 'ms') 
     
     
-    fft_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create an empty dask array
+    fft_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create an empty dask array for fft
+    cwt_dask = da.zeros(z_shape, chunks=z_chunks, dtype=float_type) # create another empty dask array for wavelet transformation
 
     xr_zarr = xr.Dataset(
         {
             "fft": (["time", "channel", "frequency"], fft_dask),
+            "cwt": (["time", "channel", "frequency"], cwt_dask),
         },
         coords={
             "time": time_coords,
