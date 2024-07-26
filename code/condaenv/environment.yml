@@ -22,3 +22,4 @@ dependencies:
       - itables==2.1.2
       - fcwt==0.1.18
       - python-dotenv==1.0.1
+      - tqdm==4.66.4
