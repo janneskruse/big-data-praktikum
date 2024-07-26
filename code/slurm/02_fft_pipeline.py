@@ -48,7 +48,7 @@ load_dotenv(dotenv_path=f"{repo_dir}/.env")
 ###########get the environment vairables#########
 base=os.getenv("baseFolder")
 zarr_base=os.getenv("zarrBaseFolder")
-print("Base data fodler:",base"
+print(f"Base data folder:{base}")
 
 startTime = time.time()
 
@@ -308,20 +308,21 @@ def create_spectro_segment(file_index, args, filelist):
 
 ##########Base settings#########
 #granularity of spectrogram
-freq_res = 1 # frequency resolution in Hz
-time_res = 0.1 # time res in seconds
-float_type='float32'
+freq_res = int(os.getenv("FREQ_RES", 1)) # frequency resolution in Hz
+time_res = float(os.getenv("TIME_RES", 0.1)) # time res in seconds
+float_type = os.getenv("FLOAT_TYPE", 'float32')
 
 # section
-channel_distance = 4 # distance between channels in meters
-cable_start, cable_end = 0, 9200 # cable section to be processed (in meters) - 0==start
+channel_distance = int(os.getenv("CHANNEL_DISTANCE", 4)) # distance between channels in meters
+cable_start = int(os.getenv("CABLE_START", 0)) # cable section to be processed (in meters) - 0==start
+cable_end = int(os.getenv("CABLE_END", 9200)) # cable section to be processed (in meters) - 0==start
 start_channel_index, end_channel_index = cable_start // channel_distance, cable_end // channel_distance # channel distances to indices
 expected_channels = end_channel_index - start_channel_index # expected number of channels
 
 # Additional parameters:
-file_length = 30 # Length of a single h5 file in seconds.
-sample_freq = 1000 #Sampling frequency in Hz of the recorded data.
-freq_max = 100 # maximum frequency cut off value for the analysis
+file_length = int(os.getenv("FILE_LENGTH", 30)) # Length of a single h5 file in seconds.
+sample_freq = int(os.getenv("SAMPLE_FREQ", 1000)) # Sampling frequency in Hz of the recorded data.
+freq_max = int(os.getenv("FREQ_MAX", 100)) # maximum frequency cut off value for the analysis
 seg_length=1/freq_res #calculate window length corresponding to freq_res
 n_samples = file_length*sample_freq #number of samples in one file/total number of data points available in one file
 num_frequency_points = int(seg_length*freq_max+1)
