@@ -9,6 +9,7 @@ import re
 from datetime import datetime, timedelta
 from operator import itemgetter
 import fnmatch
+from dotenv import load_dotenv
 
 #benchmarking
 import time
@@ -29,17 +30,27 @@ import pyfftw.interfaces.dask_fft as dafft
 import pickle
 import zarr
 
-############# Parse the command line arguments #############
-total_cpus = int(sys.argv[1])
+#visualization
+import lexcube as lc
+from itables import init_notebook_mode, show
+init_notebook_mode(all_interactive=False)
 
-start_time = time.time()
+############# Parse the command line arguments #############
+total_cpus = int(mp.cpu_count())
 
 
 ############# Base paths and folder names #############
 # get the base path of the repository
 repo_dir = os.popen('git rev-parse --show-toplevel').read().strip()
-base="/work/le837wmue-Rhone_download/DAS_2020"
-zarr_base="/work/ju554xqou-rhonezarrs"
+###load the .env file
+load_dotenv(dotenv_path=f"{repo_dir}/.env")
+
+###########get the environment vairables#########
+base=os.getenv("baseFolder")
+zarr_base=os.getenv("zarrBaseFolder")
+print("Base data fodler:",base"
+
+startTime = time.time()
 
 
 ############# Define the functions #############
@@ -196,6 +207,8 @@ def channel_fourier(data, args, taper, positions):
     n_segments = positions.shape[0]
 
     # Pre-allocate the segments array
+    segments = ([data[pos:pos+seg_len] for pos in positions])
+    segments = [seg.T[start_channel_index:end_channel_index] for seg in segments]
     Fsegs = np.zeros((n_segments, end_channel_index - start_channel_index, num_frequency_points), dtype=fft_dtype)  # empty float32 array
     
     # Pre-allocate the input array for FFTW
@@ -206,17 +219,10 @@ def channel_fourier(data, args, taper, positions):
     # Prepare slices for efficient slicing
     channel_slice = slice(start_channel_index, end_channel_index)
     
-    for i, pos in enumerate(positions):
-        sliced_data = data[pos:pos + seg_len]
-        sliced_data = sliced_data.T[channel_slice].astype(fft_dtype)
-        
-        # Handle segments with varying lengths
-        if sliced_data.shape[1] != seg_len:
-            sliced_data = np.array([pad_or_truncate_channel(channel, seg_len) for channel in sliced_data])
-
-        # Compute the Fourier transform for each segment
-        for channel_number, channel in enumerate(sliced_data):
-            np.multiply(taper, channel, out=fft_input)  # Apply taper
+    for i in range(n_segments):
+        for channel_number, channel in enumerate(segments[i]):
+            fft_input[:] = taper * channel  # Apply taper
+            #np.multiply(taper, channel, out=fft_input)  # Apply taper
             fft_output = fft_object()  # Execute FFT
             fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2 + 1e-10))[:num_frequency_points]  # Compute power spectrum
             fourier_transformed[0] = 0  # Remove DC component (average value of the signal)
@@ -257,22 +263,19 @@ def create_spectro_segment(file_index, args, filelist):
     taper = signal.windows.tukey(seg_len, 0.25)  # reduces the amplitude of the discontinuities at the boundaries, thereby reducing spectral leakage.
     
     # Load the data
-    xr_h5=xr.open_dataset(filename, engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
-    data=xr_h5["Acoustic"].compute().values.astype(float_type)
-        
-    # the windowing function (Tukey window in this case) tapers at the ends, 
-    # to avoid losing data at the ends of each file, 
-    # the end of one file is overlapped with the beginning of the next file.
-    if file_index!=n_files-1:
-        xr_h5_2=xr.open_dataset(filelist[file_index+1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
-        data_2=xr_h5_2["Acoustic"].compute().values.astype(float_type)
-        
-        # Ensure the arrays have the same size along dimension 1
-        if data.shape[1:] == data_2.shape[1:]:
-            min_size = min(data.shape[1], data_2.shape[1])
-            data = data[:, :min_size]
-            data_2 = data_2[:, :min_size]
-        
+    # xr_h5 = xr.open_dataset(filename, engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
+    # data = xr_h5["Acoustic"].compute().values.astype(float_type)
+    
+    f = h5py.File(filename,'r')
+    dset=f['Acoustic']
+    data = np.array(dset)
+    
+    if file_index < n_files - 1:
+        #xr_h5_2 = xr.open_dataset(filelist[file_index + 1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
+        #data_2 = xr_h5_2["Acoustic"].compute().values.astype(float_type)
+        f = h5py.File(filelist[file_index+1],'r')
+        dset=f['Acoustic']
+        data_2 = np.array(dset)
         data = np.concatenate((data, data_2[0:seg_len]), axis=0)
     
     next_file_index = file_index+1
@@ -289,29 +292,16 @@ def create_spectro_segment(file_index, args, filelist):
         # to ensure that the last segment doesn't extend beyond the end of the data
         positions = np.arange(np.ceil((file_index)*n_samples/hop), np.floor((next_file_index*n_samples-seg_len)/hop)+1, dtype=int)*hop - file_pos
 
+    
+    # Filter positions to ensure valid segments
+    positions = positions[positions + seg_len <= len(data)]
+    
     start=time.time()
-    # Calculate the Fourier transformed segments
+    print(f"Starting fft of {filename}: {start}")
     Fsegs = channel_fourier(data, args, taper, positions)
     print(f"Time taken for fft of {filename}: {time.time()-start}")
     
-    return Fsegs, positions.shape[0] # return the Fourier transformed segments and the number of segments
-
-
-def pad_or_truncate_channel(channel_data, seg_len):
-    """
-    Pads or truncates the channel data to the correct segment length.
-    
-    Args:
-        channel_data (np.array): The channel data to pad or truncate.
-        seg_len (int): The segment length.
-        
-    Returns:
-        np.array: The padded or truncated channel data.
-    """
-    if channel_data.shape[0] < seg_len:
-        return np.pad(channel_data, (0, seg_len - channel_data.shape[0]), mode='constant')
-    else:
-        return channel_data[:seg_len]
+    return Fsegs, positions.shape[0]
 
 
 
@@ -394,7 +384,7 @@ if __name__=='__main__':
     print(10*"*")
     
     # get the filenames and the total amount of segments
-    filenames = get_filenames(folder, base)
+    filenames = get_filenames(folder, base)[0:10]
     n_files=len(filenames)
     args["n_files"] = n_files
     print("Number of files:", n_files)
@@ -504,8 +494,8 @@ if __name__=='__main__':
         
     print(20*"*")
     print("Calculation completed")
-    print("Total computation time in seconds:", (-start_time+time.time())) 
-    print("Computation time in seconds for fft:", (-startT + time.time()))
+    print("Total computation time in seconds:", time.time()-startTime) 
+    print("Computation time in seconds for fft:", time.time()-startT)
     print("Number of processed files:", n_files)
     print("Number of used cores:", n_cores)
     print("Time per File: ", ((-startT + time.time())/n_files))
@@ -515,5 +505,6 @@ if __name__=='__main__':
     if len(folders)>30: #
         print(f"Submitting the script again to process the next folder {folders[0]}")
         os.chdir(f"{repo_dir}/code/slurm")
-        os.system(f"sbatch 02_fft_pipeline.sh")
+        #os.system(f"sbatch 02_fft_pipeline.sh") #uncomment this to autmatically submit the next script for the next folder when finished
+    
     
