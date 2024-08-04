@@ -91,7 +91,8 @@ def create_bucket(bucket_name, region=None):
             location = {'LocationConstraint': region}
             s3_client.create_bucket(Bucket=bucket_name,
                                     CreateBucketConfiguration=location)
-        logging.info(f"Bucket {bucket_name} created successfully.")
+        print(f"Bucket {bucket_name} created successfully. Access it here: https://{bucket_name}.s3.{region}.amazonaws.com/")
+
     except ClientError as e:
         logging.error(e)
         return False
