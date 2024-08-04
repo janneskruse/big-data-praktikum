@@ -18,6 +18,7 @@ Inside [code](./code/). there is thre folders:
 The key hardcoded variables, including password access to AWS or the Nextcloud are stored in an .env file loaded by teh scripts. To be able to run the scripts, you would have to create a new .env file and copy the following into it:
 
 ```
+EMAIL= <your email address to recieve the slurm notifications>
 BASE_FOLDER="/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020"
 ZARR_BASE_FOLDER="/work/ju554xqou-cryo_cube"
 FLOAT_TYPE=float32
@@ -26,19 +27,25 @@ FREQ_MAX=100
 TIME_RES=0.1
 FILE_LENGTH=30
 SAMPLE_FREQ=200
-AWS_KEY=#yourawskey
+AWS_ACCOUNT_ID = <Your AWS account id>
+AWS_ACCESS_KEY_ID = <Your access key>
+AWS_SECRET_ACCESS_KEY = <Your secret key>
+AWS_REGION = eu-west-3
+AWS_MAX_MEMORY_MB = 5000
 NEXTCLOUD_BASE = "https://cloud.scadsai.uni-leipzig.de/index.php/s/gozxE5r9YdwGL8w/download"
 NEXTCLOUD_USERNAME=#youremail@example.de
 NEXTCLOUD_PW=""
-LD_LIBRARY_PATH=/home/sc.uni-leipzig.de/ju554xqou/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
+LD_LIBRARY_PATH=~/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
 ```
 
 Be aware, that the password for AWS and the cloud you will have to provide yourself.
-The LD_LIBRARY_PATH needs to be set for the libfftw3f.so.3 library which we installed with conda. This is needed for the wavelet transformation we implemented.
+The LD_LIBRARY_PATH (on linux like systems) needs to be set  for the libfftw3f.so.3 library to be loaded, which we installed with conda. This is needed for the wavelet transformation implemented.
 You can get the path by running the following in your activated conda environment:
 ```bash
 find $CONDA_PREFIX -name "libfftw3f.so.3"
 ```
+
+Instructions on the AWS setup you can find [below](#aws-set-up).
 
 
 ## Installation
@@ -46,10 +53,10 @@ The instructions on how to get the scripts running with the correct conda enviro
 
 ## AWS Set-up
 
-1. Create an AWS-Account
+1. Create an AWS-Account and add the account id to the .env file
 2. Obtain an [Access Key](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials/access-key-wizard) 
-3. add it to your config AWS file - follow Option 3 for this [tutorial](https://wellarchitectedlabs.com/common/documentation/aws_credentials/).
-4. Create S3 Bucket and upload .zarr following the S3Upload Notebook [here](./code/notebooks/S3Upload.ipynb).
+3. Add the obtained AWS access key id and the AWS secret access key to your .env file (variables from above)
+4. Create the S3 Bucket and upload the .zarr cubes following the S3Upload Notebook [here](./code/notebooks/S3Upload.ipynb).
 5. Set the Bucket Policy to public. To do so, add this:
 
 ```(json)

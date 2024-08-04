@@ -1,5 +1,5 @@
 ############# Import the necessary modules #############
-#python basemodules and jupyter modules
+#python basemodules modules
 import os
 import sys
 import shutil
@@ -9,12 +9,15 @@ import re
 from datetime import datetime, timedelta
 from operator import itemgetter
 import fnmatch
-from dotenv import load_dotenv
+from dotenv import load_dotenv #to load variables from .env file
 
 # get the base path of the repository
 repo_dir = os.popen('git rev-parse --show-toplevel').read().strip()
 ###load the .env file
 load_dotenv(dotenv_path=f"{repo_dir}/.env")
+#LD_LIBRARY_PATH is an environment variable used on Unix and Linux 
+# --> specify a list of directories where the system should look for dynamic libraries (.so files)
+# --> you  might need to change this for other systems
 print(f"FFTW library loaded: {os.environ.get('LD_LIBRARY_PATH')}")
 
 #benchmarking
@@ -38,7 +41,7 @@ import fcwt
 # import zarr
 
 ############# Parse the command line arguments #############
-total_cpus = int(mp.cpu_count())
+total_cpus = int(sys.argv[1])
 
 ###########get the folder environment vairables#########
 base=os.getenv("BASE_FOLDER")
@@ -86,11 +89,12 @@ def get_sorted_folders (base):
     for date in date_folders:
         date_folders[date].sort(key=lambda x: (x.split('_')[0], int(x.split('_')[1]) if '_' in x else 0))
     
-    # Combine folders for each date where there are multiple folders
+    # Combine folders for each date where there are multiple folders (e.g. _2 behind the date)
     for date, folders in date_folders.items():
         if len(folders) > 1:
             combine_folders_with_same_date(folders)
     
+    # change back to base folder
     os.chdir(base)
     print("Number of folders after moving files:", len(os.listdir()))        
             
@@ -109,10 +113,10 @@ def combine_folders_with_same_date(folders):
     primary_folder = folders[0]
     folder_path = os.path.join(base, folders[1])
     primary_folder_path = os.path.join(base, primary_folder)
+    files=os.listdir(folder_path)
+    
     
     # Move contents to the primary folder
-    files=os.listdir(folder_path)
-        
     pool=mp.Pool(mp.cpu_count())
     pool.starmap(move_files, [(filename, folder_path, primary_folder_path) for filename in files])
     pool.close()
@@ -293,7 +297,7 @@ def create_spectro_segment(file_index, args, filelist):
         int: The number of segments.
     """
     
-    # chunk args
+    # chunk arguments
     n_files=args["n_files"]
     seg_len=args["seg_len"]
     hop=args["hop"]
@@ -325,7 +329,7 @@ def create_spectro_segment(file_index, args, filelist):
     if file_index < n_files - 1:
         #xr_h5_2 = xr.open_dataset(filelist[file_index + 1], engine='h5netcdf', backend_kwargs={'phony_dims': 'access'})
         #data_2 = xr_h5_2["Acoustic"].compute().values.astype(float_type)
-        with h5py.File(filename, 'r') as f:
+        with h5py.File(filelist[file_index+1], 'r') as f:
             # Access the 'Acoustic' dataset
             acoustic_dataset = f['Acoustic']
             orig_sampling_freq = int(acoustic_dataset.attrs['SamplingFrequency[Hz]'])
@@ -334,11 +338,6 @@ def create_spectro_segment(file_index, args, filelist):
             downsampled_data2 = downsample(acoustic_data, orig_sampling_freq, sample_freq)
             #next_start_time = np.datetime64(f['Acoustic'].attrs["ISO8601 Timestamp"], 'ns')
         downsampled_data = np.concatenate((downsampled_data, downsampled_data2[0:seg_len]), axis=0)
-    
-    # Check if downsampled_data.shape[0] is greater than or equal to sample_freq
-    if downsampled_data.shape[0] < sample_freq:
-        print(f"Shape is different: {downsampled_data.shape[0]}")
-        return None
     
     next_file_index = file_index+1
     file_pos = file_index * n_samples
@@ -355,6 +354,12 @@ def create_spectro_segment(file_index, args, filelist):
         positions = np.arange(np.ceil((file_index)*n_samples/hop), np.floor((next_file_index*n_samples-seg_len)/hop)+1, dtype=int)*hop - file_pos
     #print(positions)
     
+    # to avoid shape mismatch for certain files with less segments
+    if positions.shape[0] < sample_freq:
+        print(f"Shape is different: {positions.shape[0]} for file {filename}")
+        return None
+    
+    ## get the time coordinates
     time_res_ms = time_res * 1000  # Convert time_res from seconds to milliseconds
     time_coords = start_time + np.arange(positions.shape[0]) * np.timedelta64(int(time_res_ms), 'ms') 
     
@@ -366,11 +371,14 @@ def create_spectro_segment(file_index, args, filelist):
     #Wsegs = channel_wavelet_fcwt(downsampled_data, args, positions, channel)
     print(f"Time taken for wavelet transformation of {filename}: {time.time()-start}")
     
+    
+    ## construct the dask arrays from the applied transformations
     fft_dask_array = da.from_array(Fsegs, chunks=(positions.shape[0], channel, num_frequency_points))
     #cwt_dask_array = da.from_array(Wsegs, chunks=(positions.shape[0], channel, num_frequency_points))
     z_shape=(positions.shape[0], channel, num_frequency_points) 
     cwt_dask_array = da.zeros(z_shape, chunks=(positions.shape[0], channel, num_frequency_points), dtype=float_type) # create another empty dask array for wavelet transformation
 
+    ## construct a new xarray Dataset
     xr_zarr = xr.Dataset(
         {
             "fft": (["time", "channel", "frequency"], fft_dask_array),
@@ -476,8 +484,6 @@ if __name__=='__main__':
     # In the following lines, multiple cpu-cores calculate
     # a fft for each file simultanously.
     # Before that we split the whole data to be processed in to not overload the memory!
-
-    
     print(20*"*")
     print("Number of files processed:", n_files)
     
@@ -511,7 +517,10 @@ if __name__=='__main__':
     print(20*"*")
 
     startT = time.time() # start the overall timer
-
+    
+    
+    ## for every splitup multiprocess the analysis, xarray creation, then concatenate and save to zarr
+    ## If it is the first splitup, we also write the metadata
     for i, liste in enumerate(split_up):
         print(f"split_up number: {i+1}")
               
@@ -549,30 +558,31 @@ if __name__=='__main__':
         if i==0:
             print("Adding attributes to xarray...")
             # Generate attributes from existing h5 file (dummy_file)
-            attr = dummy_xr['Acoustic'].attrs
-            attrs={
+            dummy_attributes = dummy_xr['Acoustic'].attrs
+            cube_attributes={
                 "Description":"This cube contains preprocessed DAS recorded data from the Rhone glacier in Switzerland. The variables are a fourier transformed and a wavelet transformed version of the data.",
                 "Author":"The cube is created and provided by ScaDS.AI Earth & Environmental Sciene group: https://scads.ai/research/applied-ai-and-big-data/environment-and-earth-sciences/",
                 "License":"how this data can be reused",
                 "Variables":"fft: Fourier transformed data, cwt: absolute (magnitude) Continuous Wavelet transformed data",
                 "Sampling Frequency":sample_freq,
-                "DAS Coordinates (Lat/Lon/Alt)":(attr["SystemInfomation.GPS.Latitude"],attr["SystemInfomation.GPS.Longitude"],attr["SystemInfomation.GPS.Altitude"]),
-                "Timezone of the data": attr["SystemInfomation.OS.TimeZone"],
-
+                "DAS Coordinates (Lat/Lon/Alt)":(dummy_attributes["SystemInfomation.GPS.Latitude"],dummy_attributes["SystemInfomation.GPS.Longitude"],dummy_attributes["SystemInfomation.GPS.Altitude"]),
+                "Timezone of the data": dummy_attributes["SystemInfomation.OS.TimeZone"],
             }
             xr_zarr=xr_zarr.assign_attrs(
-                attrs
+                cube_attributes
             )
         
+        ## write to zarr cube
         print("Writing liste to zarr...")
         start=time.time()
-        if i==0:
+        if i==0: #if first splitup, write mode to overwrite the above created zarr folder
             xr_zarr.to_zarr(zarr_path, mode='w', consolidated=True)
         else:   
             xr_zarr.to_zarr(zarr_path, mode='a', consolidated=True, append_dim="time")
         print(f"Wrote FFT to zarr using Dask in {time.time()-start}s for split_up {liste}")
         
-        
+    
+    ## print some statistics on the script execution
     print(20*"*")
     print("Calculation completed")
     print("Total computation time in seconds:", time.time()-startTime) 
@@ -585,5 +595,5 @@ if __name__=='__main__':
     if len(folders)>30: #
         print(f"Submitting the script again to process the next folder {folders[0]}")
         os.chdir(f"{repo_dir}/code/slurm")
-        os.system(f"sbatch 02_fft_pipeline.sh") #uncomment this to autmatically submit the next script for the next folder when finished
+        #os.system(f"sbatch 02_fft_pipeline.sh") #uncomment this to autmatically submit the next script for the next folder when finished
     

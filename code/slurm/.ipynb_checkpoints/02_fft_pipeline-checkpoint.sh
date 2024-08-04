@@ -1,4 +1,6 @@
 #!/bin/bash
+# Load environment variables from .env file
+export $(grep -v '^#' .env | xargs)
 
 #SBATCH --time=1:00:00
 #SBATCH --job-name="02_fft_pipeline"
@@ -8,7 +10,7 @@
 #SBATCH --cpus-per-task=12
 #SBATCH --mem-per-cpu=8000
 #SBATCH --partition=paula
-#SBATCH --mail-user=zt75vipu@studserv.uni-leipzig.de #please indicate your own email here
+#SBATCH --mail-user=${EMAIL} # Uses the email from the .env file
 #SBATCH --mail-type=ALL 
 #SBATCH -o "02_fft_pipeline.%j.txt"
 
