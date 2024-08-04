@@ -9,13 +9,13 @@ authors: Louis Trinkle, Jannes Kruse
     
 ## Repo structure
 All the code developed during the course can be found inside [code](./code/).
-Inside [code](./code/). there is thre folders:
+Inside [code](./code/). there is the folders:
 
 - [condaenv](./code/condaenv/) to setup the conda environment for all the scripts present
 - [notebooks](./code/notebooks) with all the notebooks explaining the pipelines and to visualize the cubes. This includes a [script](./code/notebooks/AWS_streaming.ipynb) to stream an example cube from an AWS S3 Bucket uploaded in the following pipeline: .
 - [slurm](./code/slurm/) containing the python pipelines for uploading the files to the cluster from the corresponding cloud or storage location, creating the cube including a fourier and wavelet transformation and a pipeline to upload resulting cubes to an AWS S3 Bucket
 
-The key hardcoded variables, including password access to AWS or the Nextcloud are stored in an .env file loaded by teh scripts. To be able to run the scripts, you would have to create a new .env file and copy the following into it:
+The key hardcoded variables, including password access to AWS or the Nextcloud are stored in an .env file loaded by the scripts. To be able to run the scripts, you would have to create a new .env file in the root of this git repository and copy the following into it:
 
 ```
 EMAIL= <your email address to recieve the slurm notifications>
@@ -38,7 +38,7 @@ NEXTCLOUD_PW=""
 LD_LIBRARY_PATH=~/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
 ```
 
-Be aware, that the password for AWS and the cloud you will have to provide yourself.
+Be aware, that the keys and ids for AWS and the cloud you will have to provide yourself as well as the email address for slurm.
 The LD_LIBRARY_PATH (on linux like systems) needs to be set  for the libfftw3f.so.3 library to be loaded, which we installed with conda. This is needed for the wavelet transformation implemented.
 You can get the path by running the following in your activated conda environment:
 ```bash
