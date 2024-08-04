@@ -330,7 +330,7 @@ def bucket_pipeline(cube_name):
         print(f"Bucket {bucket} would exceed the memory limit of {memory_limit} MB. Total memory usage is {total_memory} MB.")
 
 # Define the cube to upload and its memory
-zarr_base= repo_dir #os.getenv("ZARR_BASE_FOLDER")
+zarr_base= os.getenv("ZARR_BASE_FOLDER")
 os.chdir(zarr_base)
 cubes=glob.glob("*.zarr")
 
