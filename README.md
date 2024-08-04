@@ -1,6 +1,6 @@
 # Big-Data-Praktikum
 
-Git Repository zum Kurs [Big Data Praktikum](https://git.informatik.uni-leipzig.de/dbs/big-data-praktikum/-/tree/master). Zum Thema Signal Processing on Cryoseismological data from Rhônegletscher (Switzerland) gehöriges Git Repo: [CryoCube](https://github.com/JosepinaU/CryoCube).
+Git Repository for the class [Big Data Praktikum](https://git.informatik.uni-leipzig.de/dbs/big-data-praktikum/-/tree/master) of University of Leipzig. Original Codebase corresponding to the topic Signal Processing on Cryoseismological data from Rhônegletscher (Switzerland): [CryoCube](https://github.com/JosepinaU/CryoCube).
 
 ---
 authors: Louis Trinkle, Jannes Kruse
