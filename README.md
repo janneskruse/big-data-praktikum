@@ -57,19 +57,5 @@ The instructions on how to get the scripts running with the correct conda enviro
 2. Obtain an [Access Key](https://us-east-1.console.aws.amazon.com/iam/home#/security_credentials/access-key-wizard) 
 3. Add the obtained AWS access key id and the AWS secret access key to your .env file (variables from above)
 4. Create the S3 Bucket and upload the .zarr cubes following the S3Upload Notebook [here](./code/notebooks/S3Upload.ipynb).
-5. Set the Bucket Policy to public. To do so, add this:
+There is a pipeline to multithread the upload with slurm as well:  [04_s3_upload.py](./code/slurm/04_s3_upload.py).
 
-```(json)
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadForAllObjects",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::your_s3_bucket/*"
-        }
-    ]
-}
-```
