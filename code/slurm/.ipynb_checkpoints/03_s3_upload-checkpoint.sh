@@ -1,8 +1,4 @@
 #!/bin/bash
-
-# Load environment variables from .env file
-export $(grep -v '^#' .env | xargs)
-
 #SBATCH --time=1:00:00
 #SBATCH --job-name="03_s3_upload"
 #SBATCH --nodes=1 #3
@@ -11,7 +7,6 @@ export $(grep -v '^#' .env | xargs)
 #SBATCH --cpus-per-task=6
 #SBATCH --mem-per-cpu=8000
 #SBATCH --partition=paula
-#SBATCH --mail-user=${EMAIL} # Uses the email from the .env file
 #SBATCH --mail-type=ALL 
 #SBATCH -o "03_s3_upload.%j.txt"
 

@@ -1,8 +1,4 @@
 #!/bin/bash
-
-# Load environment variables from .env file
-export $(grep -v '^#' .env | xargs)
-
 #SBATCH --time=1-23:00:00  # Tag-Stunden
 #SBATCH --job-name="01_download_rhone"
 #SBATCH --nodes=1
@@ -10,7 +6,6 @@ export $(grep -v '^#' .env | xargs)
 #SBATCH --cpus-per-task=4  # Utilize multiple CPUs for parallel processing
 #SBATCH --mem=32G  # Allocate 32GB of RAM
 #SBATCH --partition=paul-long
-#SBATCH --mail-user=${EMAIL} # Uses the email from the .env file
 #SBATCH --mail-type=ALL 
 #SBATCH -o "01_download_rhone.%j.txt"  # j for the job id
 

@@ -18,7 +18,6 @@ Inside [code](./code/). there is the folders:
 The key hardcoded variables, including password access to AWS or the Nextcloud are stored in an .env file loaded by the scripts. To be able to run the scripts, you would have to create a new .env file in the root of this git repository and copy the following into it:
 
 ```
-EMAIL= <your email address to recieve the slurm notifications>
 BASE_FOLDER="/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020"
 ZARR_BASE_FOLDER="/work/ju554xqou-cryo_cube"
 FLOAT_TYPE=float32
@@ -30,15 +29,16 @@ SAMPLE_FREQ=200
 AWS_ACCOUNT_ID = <Your AWS account id>
 AWS_ACCESS_KEY_ID = <Your access key>
 AWS_SECRET_ACCESS_KEY = <Your secret key>
-AWS_REGION = eu-west-3
+AWS_REGION = eu-north-1
 AWS_MAX_MEMORY_MB = 5000
+AWS_BUCKET_NAME = rhone-glacier-das
 NEXTCLOUD_BASE = "https://cloud.scadsai.uni-leipzig.de/index.php/s/gozxE5r9YdwGL8w/download"
 NEXTCLOUD_USERNAME=#youremail@example.de
 NEXTCLOUD_PW=""
 LD_LIBRARY_PATH=~/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
 ```
 
-Be aware, that the keys and ids for AWS and the cloud you will have to provide yourself as well as the email address for slurm.
+Be aware, that the keys and ids for AWS and the cloud you will have to provide yourself.
 The LD_LIBRARY_PATH (on linux like systems) needs to be set  for the libfftw3f.so.3 library to be loaded, which we installed with conda. This is needed for the wavelet transformation implemented.
 You can get the path by running the following in your activated conda environment:
 ```bash

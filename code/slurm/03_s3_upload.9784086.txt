@@ -1,0 +1,51 @@
+Total CPUs: 60
+Number of cores used: 54
+Bucket name: rhone-glacier-das
+Client created: <botocore.client.S3 object at 0x14a7f1b888e0>
+********************
+Creating bucket rhone-glacier-das in eu-north-1 region.
+Bucket rhone-glacier-das created successfully.
+********************
+Public access block settings updated for bucket rhone-glacier-das.
+Setting bucket policy for rhone-glacier-das.
+Bucket policy set successfully for rhone-glacier-das.
+********************
+Existing buckets:
+rhone-glacier-das: 0.00 MB
+********************
+AWS memory limit set to: 5000 MB
+Memory space used on AWS in MB: 0.0
+********************
+Cube memory in MB: 1334.8645782470703
+List of cubes to upload: ['cryo_cube_20200704.zarr']
+Uploading all the cubes...
+********************
+Cube memory in MB: 1334.8645782470703
+Attempting to upload the cube cryo_cube_20200704.zarr to the new bucket: rhone-glacier-das
+Successfully uploaded cryo_cube_20200704.zarr/.zgroup
+Successfully uploaded cryo_cube_20200704.zarr/.zattrs
+Successfully uploaded cryo_cube_20200704.zarr/.zmetadata
+Successfully uploaded cryo_cube_20200704.zarr/channel/.zarray
+Successfully uploaded cryo_cube_20200704.zarr/channel/.zattrs
+Successfully uploaded cryo_cube_20200704.zarr/channel/0
+Successfully uploaded cryo_cube_20200704.zarr/frequency/.zattrs
+Successfully uploaded cryo_cube_20200704.zarr/frequency/.zarray
+Successfully uploaded cryo_cube_20200704.zarr/frequency/0
+Successfully uploaded cryo_cube_20200704.zarr/cwt/.zattrs
+Successfully uploaded cryo_cube_20200704.zarr/cwt/.zarray
+Successfully uploaded cryo_cube_20200704.zarr/cwt/2.0.0
+Successfully uploaded cryo_cube_20200704.zarr/cwt/0.0.0
+Successfully uploaded cryo_cube_20200704.zarr/cwt/1.0.0
+Successfully uploaded cryo_cube_20200704.zarr/time/0
+Successfully uploaded cryo_cube_20200704.zarr/time/.zattrs
+Successfully uploaded cryo_cube_20200704.zarr/time/.zarray
+Successfully uploaded cryo_cube_20200704.zarr/fft/2.0.0
+Successfully uploaded cryo_cube_20200704.zarr/fft/.zarray
+Successfully uploaded cryo_cube_20200704.zarr/fft/.zattrs
+Successfully uploaded cryo_cube_20200704.zarr/fft/0.0.0
+Successfully uploaded cryo_cube_20200704.zarr/fft/1.0.0
+Zarr cube available at: https://s3.eu-north-1.amazonaws.com/rhone-glacier-das/cryo_cube_20200704.zarr
+Successfully uploaded directory cryo_cube_20200704.zarr to bucket {'Name': 'rhone-glacier-das', 'CreationDate': datetime.datetime(2024, 8, 7, 2, 9, 34, tzinfo=tzutc())}.
+Total uploading time in seconds:8.992122411727905
+Average uploading time per file in seconds:8.992149591445923
+********************
