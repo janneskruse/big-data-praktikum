@@ -1,0 +1,713 @@
+Total CPUs: 360
+FFTW library loaded: ~/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
+Base data folder:/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020
+Number of folders before moving files: 34
+Number of folders after moving files: 34
+base folder: /work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020
+Processing folder 20200707
+********************
+Max number of CPUs:  360
+Processed day: 07.07.2020
+Time resolution: 0.1 sec
+Frequency resolution: 1 Hz
+Resulting overlap: 0.9
+********************
+Creating Zarr path...
+Zarr path created at: /work/ju554xqou-cryo_cube/cryo_cube_20200707.zarr in 0.0012316703796386719s:
+********************
+Number of files processed: 2880
+Memory per file (MB): 417.8555717468262
+Maximum number of files to be processed at once: 1945
+Number of split_ups: 1
+Number of cores used: 324
+********************
+split_up number: 1
+Starting FFT for split_up liste [   0    1    2 ... 2877 2878 2879]
+Time taken for fft of rhone1khz_UTC_20200707_053908.931.h5: 9.606045007705688
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053908.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_001808.931.h5: 9.813254356384277
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_001808.931.h5: 6.198883056640625e-06
+Time taken for fft of rhone1khz_UTC_20200707_060308.931.h5: 9.70335602760315
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060308.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_060738.931.h5: 9.727195978164673
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060738.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_052838.931.h5: 9.773566246032715
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052838.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_021938.931.h5: 9.773256540298462
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_021938.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_012838.931.h5: 9.701465368270874
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_012838.931.h5: 6.4373016357421875e-06
+Time taken for fft of rhone1khz_UTC_20200707_011808.931.h5: 9.674143314361572
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_011808.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_010308.931.h5: 9.70233416557312
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010308.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_044938.931.h5: 9.745755672454834
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_044938.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_075838.931.h5: 9.656986236572266
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075838.931.h5: 3.337860107421875e-06
+Time taken for fft of rhone1khz_UTC_20200707_015838.931.h5: 9.813250541687012
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015838.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_074638.931.h5: 9.757991075515747
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074638.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_033308.931.h5: 9.79326605796814
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033308.931.h5: 3.814697265625e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_033438.931.h5: 9.817694425582886
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033438.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_034638.931.h5: 9.799172639846802
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_034638.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_023908.931.h5: 9.790514469146729
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023908.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_002108.931.h5: 9.74019718170166
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_002108.931.h5: 5.7220458984375e-06
+Time taken for fft of rhone1khz_UTC_20200707_000008.931.h5: 9.766785144805908
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_000008.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_053308.931.h5: 9.821130514144897
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053308.931.h5: 4.76837158203125e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_064208.931.h5: 9.719931602478027
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064208.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_053738.931.h5: 9.819055795669556
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053738.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_032838.931.h5: 9.766798973083496
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_032838.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_062708.931.h5: 9.941787958145142
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_062708.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_072538.931.h5: 9.767013311386108
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072538.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_025538.931.h5: 10.190712213516235
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025538.931.h5: 8.821487426757812e-06
+Time taken for fft of rhone1khz_UTC_20200707_013308.931.h5: 9.78654408454895
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_013308.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_051808.931.h5: 9.835761547088623
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_051808.931.h5: 5.7220458984375e-06
+Time taken for fft of rhone1khz_UTC_20200707_064938.931.h5: 9.924655675888062
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064938.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_042538.931.h5: 9.958898782730103
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_042538.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_070138.931.h5: 9.710727453231812
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070138.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_040738.931.h5: 9.784114837646484
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040738.931.h5: 6.198883056640625e-06
+Time taken for fft of rhone1khz_UTC_20200707_052538.931.h5: 9.7987699508667
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052538.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_054638.931.h5: 9.966398239135742
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054638.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_074508.931.h5: 9.975971698760986
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074508.931.h5: 4.5299530029296875e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_041038.931.h5: 10.007488012313843
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041038.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_064508.931.h5: 9.889626741409302
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064508.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_031638.931.h5: 9.901710033416748
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031638.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_024808.931.h5: 9.925405263900757
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024808.931.h5: 5.7220458984375e-06
+Time taken for fft of rhone1khz_UTC_20200707_013438.931.h5: 9.88710904121399
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_013438.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_014038.931.h5: 9.922091484069824
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_014038.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_055238.931.h5: 9.833422660827637
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055238.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_022238.931.h5: 9.935287475585938
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022238.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_045108.931.h5: 9.910851240158081
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045108.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_054938.931.h5: 10.095266103744507
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054938.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_050308.931.h5: 9.802294492721558
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_050308.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_073608.931.h5: 9.849870681762695
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073608.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_012708.931.h5: 9.880613803863525
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_012708.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_003908.931.h5: 10.388245344161987
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_003908.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_025708.931.h5: 10.232685089111328
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025708.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_042238.931.h5: 10.081356287002563
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_042238.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_050138.931.h5: 10.054372310638428
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_050138.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_035838.931.h5: 10.413979768753052
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035838.931.h5: 5.9604644775390625e-06
+Time taken for fft of rhone1khz_UTC_20200707_073908.931.h5: 10.020293712615967
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073908.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_080138.931.h5: 10.215417861938477
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_080138.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_073308.931.h5: 10.01568078994751
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073308.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_023008.931.h5: 9.97134518623352
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023008.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_061808.931.h5: 10.02810263633728
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061808.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_030908.931.h5: 9.912444591522217
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030908.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_061638.931.h5: 10.042836666107178
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061638.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_064338.931.h5: 9.941797733306885
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064338.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_071038.931.h5: 9.833105325698853
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_071038.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_030008.931.h5: 10.079706192016602
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030008.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_020138.931.h5: 10.015589952468872
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020138.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_051938.931.h5: 10.002874851226807
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_051938.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_043738.931.h5: 10.112394332885742
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043738.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_022008.931.h5: 10.169235706329346
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022008.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_020738.931.h5: 10.007076501846313
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020738.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_055408.931.h5: 10.099728345870972
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055408.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_020608.931.h5: 10.24249005317688
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020608.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_001638.931.h5: 10.172650814056396
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_001638.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_060438.931.h5: 10.223627090454102
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060438.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_025108.931.h5: 10.17885947227478
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025108.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_055108.931.h5: 10.33341670036316
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055108.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_050608.931.h5: 10.099431276321411
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_050608.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_020008.931.h5: 9.98694634437561
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020008.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_010338.931.h5: 9.984277963638306
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010338.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_075908.931.h5: 9.947267532348633
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075908.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_072408.931.h5: 10.130972623825073
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072408.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_032108.931.h5: 10.219632387161255
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_032108.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_054808.931.h5: 10.251258373260498
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054808.931.h5: 4.5299530029296875e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_014808.931.h5: 10.06474256515503
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_014808.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_033138.931.h5: 10.21627426147461
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033138.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_063908.931.h5: 10.168827295303345
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063908.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_063308.931.h5: 10.37025260925293
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063308.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_012908.931.h5: 9.82443904876709
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_012908.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_021038.931.h5: 10.329728841781616
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_021038.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_002708.931.h5: 10.383309364318848
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_002708.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_043008.931.h5: 10.372207164764404
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043008.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_022538.931.h5: 10.093385457992554
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022538.931.h5: 6.198883056640625e-06
+Time taken for fft of rhone1khz_UTC_20200707_044508.931.h5: 10.44804072380066
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_044508.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_055838.931.h5: 10.352712392807007
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055838.931.h5: 5.9604644775390625e-06
+Time taken for fft of rhone1khz_UTC_20200707_054038.931.h5: 10.329806566238403
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054038.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_074708.931.h5: 10.074744701385498
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074708.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_004808.931.h5: 10.014849662780762
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_004808.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_072608.931.h5: 10.103074073791504
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072608.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_010138.931.h5: 10.306025743484497
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010138.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_024638.931.h5: 10.222083330154419
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024638.931.h5: 7.152557373046875e-06
+Time taken for fft of rhone1khz_UTC_20200707_071208.931.h5: 9.96079397201538
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_071208.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_033508.931.h5: 10.062139987945557
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033508.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_043608.931.h5: 10.376633167266846
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043608.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_064238.931.h5: 10.029187440872192
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064238.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_052408.931.h5: 10.544421195983887
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052408.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_070208.931.h5: 10.318543195724487
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_023138.931.h5: 10.591788530349731
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023138.931.h5: 4.0531158447265625e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_010438.931.h5: 10.511504411697388
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010438.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_035408.931.h5: 10.550806283950806
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035408.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_031708.931.h5: 10.452009916305542
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031708.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_054208.931.h5: 10.570509672164917
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054208.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_032538.931.h5: 10.156071424484253
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_032538.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_003008.931.h5: 10.671947002410889
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_003008.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_032238.931.h5: 10.630313634872437
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_032238.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_074538.931.h5: 10.46764874458313
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074538.931.h5: 9.5367431640625e-07
+Time taken for fft of rhone1khz_UTC_20200707_041808.931.h5: 10.239851951599121
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041808.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_073638.931.h5: 10.06852126121521
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073638.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_000138.931.h5: 10.634341716766357
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_000138.931.h5: 5.9604644775390625e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_014108.931.h5: 10.627975463867188
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_014108.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_075238.931.h5: 10.684000730514526
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075238.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_060908.931.h5: 10.291980981826782
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060908.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_034708.931.h5: 10.79332447052002
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_034708.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_025608.931.h5: 10.121023893356323
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025608.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_045538.931.h5: 10.192238330841064
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045538.931.h5: 6.9141387939453125e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_003938.931.h5: 10.477741241455078
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_003938.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_003308.931.h5: 10.657881736755371
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_003308.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_050338.931.h5: 10.537420749664307
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_050338.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_013338.931.h5: 10.473281145095825
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_013338.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_080008.931.h5: 10.374432563781738
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_080008.931.h5: 5.9604644775390625e-06
+Time taken for fft of rhone1khz_UTC_20200707_013508.931.h5: 10.568753719329834
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_013508.931.h5: 4.76837158203125e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_040438.931.h5: 10.375434160232544
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040438.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_073938.931.h5: 10.709838151931763
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073938.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_042308.931.h5: 10.461566925048828
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_042308.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_023608.931.h5: 10.446496963500977
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023608.931.h5: 5.245208740234375e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_030438.931.h5: 11.22703242301941
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030438.931.h5: 8.821487426757812e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_033738.931.h5: 10.853294372558594
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033738.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_015908.931.h5: 10.717528581619263
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015908.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_062838.931.h5: 10.762118101119995
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_062838.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_033338.931.h5: 10.610563039779663
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033338.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_041338.931.h5: 10.66698431968689
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041338.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_012738.931.h5: 10.449082136154175
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_012738.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_071808.931.h5: 10.949960708618164
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_071808.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_063008.931.h5: 11.41783595085144
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063008.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_015108.931.h5: 10.567653894424438
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015108.931.h5: 6.4373016357421875e-06
+Time taken for fft of rhone1khz_UTC_20200707_075938.931.h5: 10.550005197525024
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075938.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_040608.931.h5: 10.550333499908447
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040608.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_011838.931.h5: 10.479798316955566
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_011838.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_062108.931.h5: 10.984585762023926
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_062108.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_020808.931.h5: 10.535909175872803
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020808.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_045138.931.h5: 10.612451076507568
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045138.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_062738.931.h5: 10.545166254043579
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_062738.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_055438.931.h5: 10.760898351669312
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055438.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_040008.931.h5: 10.76463508605957
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040008.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_022308.931.h5: 10.753313064575195
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022308.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_070738.931.h5: 10.853322744369507
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070738.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_073008.931.h5: 10.63063645362854
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073008.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_050638.931.h5: 10.530376195907593
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_050638.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_030038.931.h5: 10.502686500549316
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030038.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_071108.931.h5: 10.7759268283844
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_071108.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_072438.931.h5: 10.634405136108398
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072438.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_030938.931.h5: 10.542438745498657
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030938.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_023038.931.h5: 10.883516311645508
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023038.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_053808.931.h5: 10.682997703552246
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053808.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_075408.931.h5: 10.64348840713501
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075408.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_020208.931.h5: 10.870312213897705
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_001708.931.h5: 10.853723287582397
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_001708.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_043038.931.h5: 10.775822162628174
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043038.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_052708.931.h5: 10.853835344314575
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052708.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_022608.931.h5: 10.51902723312378
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022608.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_003608.931.h5: 10.934129476547241
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_003608.931.h5: 5.7220458984375e-06
+Time taken for fft of rhone1khz_UTC_20200707_074738.931.h5: 10.473053216934204
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074738.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_052008.931.h5: 10.818188667297363
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052008.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_004938.931.h5: 10.878582954406738
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_004938.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_035908.931.h5: 10.837680339813232
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035908.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_072638.931.h5: 10.475032329559326
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072638.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_010408.931.h5: 10.66039752960205
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010408.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_072838.931.h5: 10.871206760406494
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072838.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_045838.931.h5: 10.911978483200073
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045838.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_034338.931.h5: 10.437459707260132
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_034338.931.h5: 5.9604644775390625e-06
+Time taken for fft of rhone1khz_UTC_20200707_073338.931.h5: 10.742357015609741
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073338.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_014938.931.h5: 10.433491230010986
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_014938.931.h5: 5.245208740234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_043308.931.h5: 10.444161415100098
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043308.931.h5: 6.9141387939453125e-06
+Time taken for fft of rhone1khz_UTC_20200707_025738.931.h5: 10.738524436950684
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025738.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_025138.931.h5: 10.822378158569336
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025138.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_073138.931.h5: 10.515734195709229
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073138.931.h5: 6.67572021484375e-06
+Time taken for fft of rhone1khz_UTC_20200707_060508.931.h5: 10.561927795410156
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060508.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_023208.931.h5: 10.652775764465332
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_055908.931.h5: 10.733757972717285
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055908.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_030738.931.h5: 10.7167387008667
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030738.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_063338.931.h5: 10.465067863464355
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063338.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_043638.931.h5: 10.760488271713257
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043638.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_061838.931.h5: 10.480106592178345
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061838.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_061708.931.h5: 10.75551700592041
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061708.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_064308.931.h5: 10.378314018249512
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064308.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_073708.931.h5: 10.428848266601562
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073708.931.h5: 4.76837158203125e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_055138.931.h5: 10.951991081237793
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055138.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_024708.931.h5: 10.542190790176392
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024708.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_031508.931.h5: 10.481623888015747
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031508.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_004838.931.h5: 10.221927881240845
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_004838.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_041208.931.h5: 10.520571231842041
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041208.931.h5: 5.9604644775390625e-06
+Time taken for fft of rhone1khz_UTC_20200707_054108.931.h5: 10.758381605148315
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054108.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_070238.931.h5: 10.474268436431885
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070238.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_025638.931.h5: 10.79977560043335
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025638.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_010508.931.h5: 10.558255910873413
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010508.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_010208.931.h5: 10.478885650634766
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010208.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_032308.931.h5: 10.60184097290039
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_032308.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_035438.931.h5: 10.515357971191406
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035438.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_060938.931.h5: 10.801524877548218
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060938.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_045608.931.h5: 10.283855438232422
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045608.931.h5: 9.5367431640625e-07
+Time taken for fft of rhone1khz_UTC_20200707_070608.931.h5: 10.593992710113525
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070608.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_014138.931.h5: 10.590068340301514
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_014138.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_075308.931.h5: 10.443451642990112
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075308.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_002838.931.h5: 10.563647031784058
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_002838.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_080038.931.h5: 10.123806476593018
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_080038.931.h5: 4.76837158203125e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_074608.931.h5: 10.364667415618896
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074608.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_015938.931.h5: 10.524701833724976
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015938.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_013408.931.h5: 10.42475152015686
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_013408.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_033408.931.h5: 10.252443313598633
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033408.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_062908.931.h5: 10.341517448425293
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_062908.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_041638.931.h5: 10.555052280426025
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041638.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_000908.931.h5: 10.294326066970825
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_000908.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_035108.931.h5: 10.362433671951294
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035108.931.h5: 5.7220458984375e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_033808.931.h5: 10.052274942398071
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033808.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_030508.931.h5: 10.224783658981323
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030508.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_064808.931.h5: 10.33021092414856
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_064808.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_055508.931.h5: 10.192751407623291
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055508.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_062808.931.h5: 10.120345830917358
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_062808.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_021638.931.h5: 10.15890097618103
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_021638.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_063038.931.h5: 9.99613881111145
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063038.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_023108.931.h5: 10.040972232818604
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_023108.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_053838.931.h5: 9.980365514755249
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053838.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_040638.931.h5: 9.94968318939209
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040638.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_071838.931.h5: 10.289836883544922
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_071838.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_015138.931.h5: 10.008347988128662
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015138.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_030108.931.h5: 9.917355060577393
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030108.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_001738.931.h5: 9.820328950881958
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_001738.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_045208.931.h5: 10.073408842086792
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_070808.931.h5: 9.874572992324829
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070808.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_022638.931.h5: 9.99936580657959
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022638.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_072508.931.h5: 10.26755428314209
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072508.931.h5: 7.152557373046875e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_040038.931.h5: 9.865797519683838
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040038.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_031808.931.h5: 9.981172323226929
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031808.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_024938.931.h5: 10.10579800605774
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024938.931.h5: 4.0531158447265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_053938.931.h5: 9.910943984985352
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053938.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_054708.931.h5: 9.935783863067627
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054708.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_012938.931.h5: 9.937897205352783
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_012938.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_073408.931.h5: 9.84175443649292
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073408.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_024338.931.h5: 9.928626537322998
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024338.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_072908.931.h5: 9.867333889007568
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072908.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_075438.931.h5: 9.886131763458252
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075438.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_015008.931.h5: 9.743040084838867
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015008.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_073208.931.h5: 9.903512716293335
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_045908.931.h5: 10.392050504684448
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_045908.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_060538.931.h5: 9.906201362609863
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_060538.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_063408.931.h5: 9.841787576675415
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063408.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_015238.931.h5: 9.777074337005615
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015238.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_030808.931.h5: 9.805150985717773
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030808.931.h5: 4.76837158203125e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_043708.931.h5: 9.857759237289429
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043708.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_024738.931.h5: 9.912184000015259
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024738.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_061908.931.h5: 9.852889776229858
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061908.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_010238.931.h5: 9.64319658279419
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_010238.931.h5: 2.384185791015625e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_053438.931.h5: 9.852792501449585
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_053438.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_004908.931.h5: 9.663969278335571
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_004908.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_051838.931.h5: 9.80077862739563
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_051838.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_061008.931.h5: 9.64572262763977
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061008.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_061738.931.h5: 9.728252172470093
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061738.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_041238.931.h5: 9.683158159255981
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041238.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_054138.931.h5: 9.740908861160278
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054138.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_032338.931.h5: 10.043370485305786
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_032338.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_061208.931.h5: 9.835047006607056
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_061208.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_020438.931.h5: 9.77136778831482
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_020438.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_025838.931.h5: 10.068670749664307
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_025838.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_031538.931.h5: 9.693182468414307
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031538.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_070008.931.h5: 9.820294380187988
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070008.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_002908.931.h5: 9.67117166519165
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_002908.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_055208.931.h5: 9.952450037002563
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055208.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_041508.931.h5: 9.756497383117676
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041508.931.h5: 3.814697265625e-06
+Time taken for fft of rhone1khz_UTC_20200707_035138.931.h5: 9.722540378570557
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035138.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_071508.931.h5: 9.683906316757202
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_071508.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_074808.931.h5: 9.799018144607544
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_074808.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_021708.931.h5: 9.597658157348633
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_021708.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_030538.931.h5: 10.13538408279419
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030538.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_015208.931.h5: 9.659588098526001
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_040708.931.h5: 9.591226816177368
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040708.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_055008.931.h5: 9.940603733062744
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_055008.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_052038.931.h5: 9.759114503860474
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052038.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_040108.931.h5: 9.69155240058899
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_040108.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_070838.931.h5: 9.73095965385437
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070838.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_031838.931.h5: 9.621988534927368
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031838.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_042838.931.h5: 9.790098905563354
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_042838.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_043108.931.h5: 9.757509708404541
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043108.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_072938.931.h5: 9.78446912765503
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_072938.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_041838.931.h5: 9.715060949325562
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041838.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_054738.931.h5: 9.96080493927002
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054738.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_054238.931.h5: 9.747464179992676
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_054238.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_073738.931.h5: 9.737730503082275
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073738.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_073238.931.h5: 9.581114292144775
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_073238.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_063138.931.h5: 9.823410749435425
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063138.931.h5: 5.0067901611328125e-06
+Time taken for fft of rhone1khz_UTC_20200707_024408.931.h5: 9.825392723083496
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_024408.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_043138.931.h5: 9.665687322616577
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_043138.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_075508.931.h5: 9.581534385681152
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_075508.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_041408.931.h5: 9.73506474494934
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041408.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_015038.931.h5: 9.550483226776123
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_015038.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_000038.931.h5: 9.78580641746521
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_000038.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_014208.931.h5: 9.543996810913086
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_014208.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_035238.931.h5: 9.924450874328613
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_035238.931.h5: 3.814697265625e-06
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_065008.931.h5: 9.69477391242981
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_065008.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_022838.931.h5: 9.711981773376465
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_022838.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_081638.931.h5: 9.648529291152954
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_081638.931.h5: 2.384185791015625e-07
+Time taken for fft of rhone1khz_UTC_20200707_030838.931.h5: 9.809801816940308
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_030838.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_051908.931.h5: 9.965395212173462
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_051908.931.h5: 7.152557373046875e-07
+Time taken for fft of rhone1khz_UTC_20200707_041308.931.h5: 9.69990611076355
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_041308.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_013008.931.h5: 9.669435501098633
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_013008.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_033008.931.h5: 9.748300552368164
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_033008.931.h5: 4.76837158203125e-06
+Time taken for fft of rhone1khz_UTC_20200707_063438.931.h5: 9.873291015625
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_063438.931.h5: 4.5299530029296875e-06
+Time taken for fft of rhone1khz_UTC_20200707_012808.931.h5: 9.785664319992065
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_012808.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_080208.931.h5: 9.82866358757019
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_080208.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_070038.931.h5: 9.999568939208984
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070038.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_052738.931.h5: 9.587907791137695
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_052738.931.h5: 9.5367431640625e-07
+Time taken for fft of rhone1khz_UTC_20200707_002138.931.h5: 9.681951761245728
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_002138.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_002938.931.h5: 9.753639221191406
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_002938.931.h5: 4.76837158203125e-07
+Time taken for fft of rhone1khz_UTC_20200707_031608.931.h5: 9.71850323677063
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_031608.931.h5: 4.76837158203125e-07
+/home/sc.uni-leipzig.de/ju554xqou/big-data-praktikum/code/slurm/02_fft_pipeline.py:269: RuntimeWarning: divide by zero encountered in log
+  fourier_transformed = (10 * np.log(np.abs(fft_output) ** 2))[:num_frequency_points]  # Compute power spectrum
+Time taken for fft of rhone1khz_UTC_20200707_070908.931.h5: 10.038313627243042
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_070908.931.h5: 3.5762786865234375e-06
+Time taken for fft of rhone1khz_UTC_20200707_021808.931.h5: 9.894965887069702
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_021808.931.h5: 4.291534423828125e-06
+Time taken for fft of rhone1khz_UTC_20200707_001038.931.h5: 9.968050479888916
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_001038.931.h5: 5.7220458984375e-06
+Time taken for fft of rhone1khz_UTC_20200707_004638.931.h5: 9.910154104232788
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_004638.931.h5: 5.4836273193359375e-06
+Time taken for fft of rhone1khz_UTC_20200707_003338.931.h5: 9.76415729522705
+Time taken for wavelet transformation of rhone1khz_UTC_20200707_003338.931.h5: 2.384185791015625e-07

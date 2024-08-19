@@ -278,6 +278,11 @@ def downsample(data, original_freq, sample_freq):
     #print(f"factor: {factor}, sampling freq:{sample_freq}")
     return data[::factor]
 
+
+def pad_array(arr, target_shape):
+    pad_width = [(0, max(0, t - s)) for s, t in zip(arr.shape, target_shape)]
+    return np.pad(arr, pad_width, mode='constant')
+
 def create_spectro_segment(file_index, args, filelist):
     """
     Creates a spectrogram segment from a file.
@@ -337,6 +342,12 @@ def create_spectro_segment(file_index, args, filelist):
             acoustic_data = np.array(acoustic_dataset, dtype=float_type)
             downsampled_data2 = downsample(acoustic_data, orig_sampling_freq, sample_freq)
             #next_start_time = np.datetime64(f['Acoustic'].attrs["ISO8601 Timestamp"], 'ns')
+            
+        # pad if necesarry
+        print(f"file {filename} has channels: {downsampled_data.shape[1]}. Match with next file?: {downsampled_data2.shape[1] != downsampled_data.shape[1]}, Next file has {downsampled_data2.shape[1]} channels")
+        if downsampled_data2.shape[1] != downsampled_data.shape[1]:
+            downsampled_data2 = pad_array(downsampled_data2[0:seg_len], downsampled_data.shape)
+            
         downsampled_data = np.concatenate((downsampled_data, downsampled_data2[0:seg_len]), axis=0)
     
     next_file_index = file_index+1
