@@ -9,17 +9,17 @@ authors: Louis Trinkle, Jannes Kruse
     
 ## Repo structure
 All the code developed during the course can be found inside [code](./code/).
-Inside [code](./code/). there is the folders:
+Inside [code](./code/) there is the folders:
 
 - [condaenv](./code/condaenv/) to setup the conda environment for all the scripts present
-- [notebooks](./code/notebooks) with all the notebooks explaining the pipelines and to visualize the cubes. This includes a [script](./code/notebooks/AWS_streaming.ipynb) to stream an example cube from an AWS S3 Bucket uploaded in the following pipeline: .
-- [slurm](./code/slurm/) containing the python pipelines for uploading the files to the cluster from the corresponding cloud or storage location, creating the cube including a fourier and wavelet transformation and a pipeline to upload resulting cubes to an AWS S3 Bucket
+- [notebooks](./code/notebooks) with all the notebooks explaining the pipelines and to visualize the cubes. This includes a [script](./code/notebooks/04_streamingCube.ipynb) to stream an example cube from an AWS S3 Bucket uploaded in the following pipeline: [03_S3Upload.ipynb(./code/notebooks/03_S3Upload.ipynb)
+- [slurm](./code/slurm/) containing the python pipelines for uploading the files to the cluster from the corresponding cloud or storage location, creating the cube including a fourier (and wavelet transformation - would hang after a certain amount of channels) and a pipeline to upload the resulting cubes to an AWS S3 Bucket
 
 The key hardcoded variables, including password access to AWS or the Nextcloud are stored in an .env file loaded by the scripts. To be able to run the scripts, you would have to create a new .env file in the root of this git repository and copy the following into it:
 
 ```
-BASE_FOLDER="/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020"
-ZARR_BASE_FOLDER="/work/ju554xqou-cryo_cube"
+BASE_FOLDER=<Your download folder with the DAS data e.g. "/work/le837wmue-Rhone-download/le837wmue-Rhone_download-1720747219/DAS_2020">
+ZARR_BASE_FOLDER= <Your download folder with the DAS data e.g. "/work/ju554xqou-cryo_cube">
 FLOAT_TYPE=float32
 FREQ_RES=1
 FREQ_MAX=100
@@ -33,7 +33,7 @@ AWS_REGION = eu-north-1
 AWS_MAX_MEMORY_MB = 5000
 AWS_BUCKET_NAME = rhone-glacier-das
 NEXTCLOUD_BASE = "https://cloud.scadsai.uni-leipzig.de/index.php/s/gozxE5r9YdwGL8w/download"
-NEXTCLOUD_USERNAME=#youremail@example.de
+NEXTCLOUD_USERNAME=<youremail@example.de>
 NEXTCLOUD_PW=""
 LD_LIBRARY_PATH=~/.conda/envs/rhoneCube/lib:$LD_LIBRARY_PATH
 ```
