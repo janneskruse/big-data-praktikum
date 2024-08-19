@@ -121,8 +121,8 @@ def unzip_folders(zip_path, extract_path):
     logging.info('Unzipping completed.')
 
 if __name__ == "__main__":
-    zip_path = "/work/le837wmue-Rhone_download/DAS_2020.zip"
-    extract_path = "/work/le837wmue-Rhone_download/DAS_2020"
+    zip_path = f"{storage_path}/DAS_2020.zip"
+    extract_path = f"{storage_path}/DAS_2020"
     
     # Create extract_path if it does not exist
     os.makedirs(extract_path, exist_ok=True)
