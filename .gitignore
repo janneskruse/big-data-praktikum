@@ -1,3 +1,4 @@
 *.zarr
 .env
 .aws
+*.zip
